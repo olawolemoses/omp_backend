@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         $token = Auth::attempt($request->only(['email', 'password']));
 
-        if (!$token) throw new HttpException("Invalid login credentials", 401);
+        if (!$token) throw new HttpException(401, "Invalid login credentials");
 
         $user = User::whereEmail($request->email)->first();
 
