@@ -25,13 +25,15 @@ class RegisterController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required'
+            'password' => 'required|confirmed|min:6',
+            'phone' => 'required|unique:users'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone' => $request->phone,
         ]);
 
         if (!$user)
@@ -42,6 +44,6 @@ class RegisterController extends Controller
             'success' => true,
             'data' => [ 'user' => $user],
             'token' => $this->getAuthTokenData($user),
-        ], 200);
+        ], 201);
     }
 }
