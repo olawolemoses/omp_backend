@@ -19,4 +19,6 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     $router->post('register', 'Auth\RegisterController@register');
     $router->post('login', 'Auth\LoginController@login');
     $router->post('password/forgot', 'Auth\ForgotPasswordController@requestEmail');
+    $router->post('password/reset', 'Auth\ForgotPasswordController@reset');
+    $router->post('password/change', 'Auth\ChangePasswordController');
 });
