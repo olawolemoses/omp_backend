@@ -21,13 +21,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-<<<<<<< HEAD
-$app->withFacades();
-=======
 $app->withFacades(true, [
     'Tymon\JWTAuth\Facades\JWTAuth' => 'JWTAuth'
 ]);
->>>>>>> Completes Tymons auth setup
 
 $app->withEloquent();
 
