@@ -22,11 +22,11 @@ class UserController extends Controller
         
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['success' => false,'error' => 'invalid_credentials'], 400);
+                return response()->json(['status' => false,'error' => 'invalid_credentials'], 400);
             }
             else{
                 return response()->json([
-                    'success' => true,
+                    'status' => true,
                     'data' => [ 'user' => $user],
                     'data' => [ 'user' => $user],
                 'token' => JWTAuth::fromUser($user),
@@ -58,14 +58,14 @@ class UserController extends Controller
         
         if($user){
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'data' => [ 'user' => $user],
                 'token' => JWTAuth::fromUser($user),
                 // 'token' => $this->getAuthTokenData($user),
             ], 201);            
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'data' => 'User could not be created',
             ], 201);              
         }
