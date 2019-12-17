@@ -15,6 +15,8 @@
   use Illuminate\Support\Facades\Input;
   use Session;
   use Validator;
+  use Cloudder;
+
 
   class VendorCtrl extends Controller {
     public $global_language;
@@ -62,10 +64,16 @@
       $input = $request->all();
       $data = Auth::user();
 
-      if ($file = $request->files('shop_image')) {
-        $name = time().$files->getClientOriginalName();
-        $file->move('assets/images/vendorbanner', $name);
-        $input['shop_image'] = $name;
+    
+      if($request->hasFile('shop_image') && $request->file('shop_image')->isValid()){
+        $cloudder = Cloudder::upload($request->file('shop_image')->getRealPath());
+
+        $uploadResult = $cloudder->getResult();
+
+        $file_url = $uploadResult["url"];
+        $vendor->shop_image = $file_url;
+        
+    
       }
 
       $data->update($input);

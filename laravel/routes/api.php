@@ -17,12 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register', 'Auth\UserController@registration');
-Route::post('login', 'Auth\UserController@authenticate');
 
-Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('user', 'UserController@getAuthenticatedUser');
-});
 
 
 Route::group(['prefix' => 'v1'], function(){
@@ -135,6 +130,9 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
 
 
 //------------ VENDOR SECTION ------------
+
+Route::post('/v1/vendor/signup', 'Vendor\SignupCtrl@create');
+
 Route::group(['middleware' => ['vendor', 'auth'], 'prefix' => 'v1/vendor'], function ()  {
     
     // Order Notification
@@ -150,6 +148,11 @@ Route::group(['middleware' => ['vendor', 'auth'], 'prefix' => 'v1/vendor'], func
 
     // Vendor Shipping Cost   
     Route::get('/shipping-cost', 'Vendor\VendorCtrl@ship');
+
+    //vendor details
+    Route::get('all', 'Vendor\SignupCtrl@all');
+    Route::post('all/{id}', 'Vendor\SignupCtrl@show');
+    Route::post('delete/{id]', 'Vendor\SignupCtrl@delete');
 
     // Vendor Shipping Cost   
     Route::get('/banner', 'Vendor\VendorCtrl@banner');
@@ -215,7 +218,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('order/all','Admin\OrderCtrls@all');
     Route::get('order/recent','Admin\OrderCtrls@recent');
     Route::get('order/all/{id}','Admin\OrderCtrls@view');
-    Route::get('order/delete/{id}','Admin\OrderCtrls@delete');
+    Route::delete('order/delete/{id}','Admin\OrderCtrls@delete');
 
 
 

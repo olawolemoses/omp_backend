@@ -9,7 +9,7 @@ use App\User;
 class UserCtrl extends Controller
 {
 
-               //fetch all orders for admin
+               //fetch all users for admin
                public function all(Request $request)
                {
                    $user = User::latest()->get();
