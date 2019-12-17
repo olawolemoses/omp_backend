@@ -11,7 +11,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ChangePasswordCtrl extends Controller
 {
-    use ResetsPasswords;
+    
+    // use ResetsPasswords;
 
     public function __construct()
     {
