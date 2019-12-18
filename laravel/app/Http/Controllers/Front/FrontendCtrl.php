@@ -134,13 +134,13 @@
       // $ps = DB::table('pagesettings')->find(1);
       // $partners = DB::table('partners')->get();
       // $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->take(8)->get();
-      $feature_products =  Product::where('featured','=',1)->where('status','=',1)->take(8)->get();
-      $best_products = Product::where('best','=',1)->where('status','=',1)->take(3)->get(); 
+      $feature_products =  Product::where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
+      $best_products = Product::where('best','=',1)->where('status','=',1)->take(3)->latest()->get(); 
       // $top_products = Product::where('top','=',1)->where('status','=',1)->take(8)->get();
       // $big_products = Product::where('big','=',1)->where('status','=',1)->take(6)->get();
       // $hot_products =  Product::where('hot','=',1)->where('status','=',1)->take(9)->get();
       // $latest_products =  Product::where('latest','=',1)->where('status','=',1)->take(9)->get();
-      $trending_products =  Product::where('trending','=',1)->where('status','=',1)->take(9)->get();
+      $trending_products =  Product::where('trending','=',1)->where('status','=',1)->take(9)->latest()->get();
       // $sale_products =  Product::where('sale','=',1)->where('status','=',1)->take(9)->get();
 
       return response()->json([
