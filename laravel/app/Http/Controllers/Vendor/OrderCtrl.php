@@ -11,16 +11,34 @@
   class OrderCtrl extends Controller
   {
       
-      public function index() {
+      public function main() {
           $user = Auth::user();
           $orders = VendorOrder::where('user_id', '=', $user->id)->orderBy('id', 'desc')->get()->groupBy('order_number');
 
           return response()->json([
-            'success' => true,
+            'z' => true,
             'data' => compact('user','orders')
           ], 201);
       }
 
+      public function index(Request $request, $user_id)
+      { 
+        $order =Order::where('user_id', $user_id)->latest()->get();
+  
+          if(!$order){
+              return response() ->json([
+                  'status' =>false,
+                  'message' => 'order could not be found'
+          
+              ]);
+          }
+          else{
+              return response() ->json([
+                  'status' =>true,
+                  'data' => $order
+              ], 200);
+          }
+      }
 
 
 

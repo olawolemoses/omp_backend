@@ -9,6 +9,8 @@
   use Validator;
   use Cloudder;
   use Hash;
+  use JWTAuth;
+
 
   class SignupCtrl extends controller{
 
@@ -18,15 +20,15 @@
             'email' => 'required | string :unique',
             'password' => 'required | string',   
             'address' => 'required | string',
-            'photo' => 'mimes:jpeg,jpg,png,pdf',
-            'bill' => 'mimes:jpeg,jpg,png,pdf',
+            'photo' => 'mimes:jpeg,jpg,png,svg',
+            'bill' => 'mimes:jpeg,jpg,png,svg',
             'zip' => 'required',
             'country' => 'required | string',
             'state' => 'required | string',
             'shop_name' => 'required | string',
             'shop_details' => 'required | string',
             'id_card' => 'mimes:jpeg,jpg,png,svg,pdf',
-            'phone' => 'required | numeric',
+          
             
         ]);
 
@@ -134,6 +136,42 @@
         }
     }
 
+
+     public function authenticate(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        $user = User::whereEmail($request->email)->first();
+
+        try {
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['status' => false,'error' => 'invalid_credentials'], 200);
+            }
+            else{
+                $ven = User::where('is_vendor','=','1');
+                    if($ven){
+
+                        return response()->json([
+                            'status' => true,
+                            'data' => [ 'user' => $user],
+                            'data' => [ 'user' => $user],
+                        'token' => JWTAuth::fromUser($user),
+                        // 'token' => $this->getAuthTokenData($user),
+                    ], 201); 
+                    }
+                    else{
+                        return response()->json(['status' => false,'error' => 'User not registered as vendor'], 200);
+
+                    }
+                
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        return response()->json(compact('token'));
+    }
+
     public function show (Request $request, $id){
         $vendor = User::findOrFail($id);
         if(!$vendor){
@@ -173,7 +211,7 @@
 
     public function all(Request $request)
     {   
-        $user = User::where('vendor_id','=','1')->latest()->get();
+        $user = User::where('is_vendor','=','1')->latest()->get();
         
 
         if(!$user){
@@ -193,5 +231,7 @@
             ], 200);
         }
     }
+
+
 
   }

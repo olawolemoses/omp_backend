@@ -132,8 +132,10 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
 //------------ VENDOR SECTION ------------
 
 Route::post('/v1/vendor/signup', 'Vendor\SignupCtrl@create');
+Route::post('/v1/vendor/login', 'Vendor\SignupCtrl@authenticate');
 
-Route::group(['middleware' => ['vendor', 'auth'], 'prefix' => 'v1/vendor'], function ()  {
+
+Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function ()  {
     
     // Order Notification
     Route::get('/order/notf/show/{id}', 'Vendor\NotificationController@order_notf_show');
@@ -168,6 +170,27 @@ Route::group(['middleware' => ['vendor', 'auth'], 'prefix' => 'v1/vendor'], func
     Route::post('/service/create', 'Vendor\ServiceCtrl@create');
     Route::put('/service/edit/{id}', 'Vendor\ServiceCtrl@update');  
     Route::delete('/service/delete/{id}', 'Vendor\ServiceCtrl@destroy'); 
+
+
+    //get user details
+    Route::get('/{id}', 'Vendor\SignupCtrl@show');
+
+    //Product
+    Route::post('/product/create','Vendor\ProductCtrl@create');
+    Route::put('/product/update/{id}','Vendor\ProductCtrl@edit');
+    Route::get('/prod/{user_id}','Vendor\ProductCtrl@prodid');
+    Route::get('/product/{id}','Vendor\ProductCtrl@view');
+    Route::delete('/product/delete/{id}','Vendor\ProductCtrl@delete');
+
+
+    //Category
+    Route::get('category/main','Admin\CategoryCtrl@show');
+    Route::get('category/sub','Admin\SubcategoryCtrl@show');
+    Route::get('category/child','Admin\SubcategoryCtrl@show');
+    
+    //Order
+    Route::get('/orders/{user_id}','Vendor\OrderCtrl@index');
+
 
 });
 
@@ -249,4 +272,13 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('/users/{id}', 'Admin\UserCtrl@view');
     Route::delete('/users/delete/{id}', 'Admin\UserCtrl@delete');
 
+    //get vendor 
+    Route::get('/vendor/all', 'Vendor\SignupCtrl@all');
+    Route::delete('/vendor/{id}', 'Vendor\SignupCtrl@delete');
+    Route::get('/vendor/{id}', 'Vendor\SignupCtrl@show');
+
+    //see all subscription in the system
+    Route::get('/sub/all', 'Admin\SubscriptionCtrl@all');
+    Route::get('/sub/{id}', 'Admin\SubscriptionCtrl@view');
+    Route::delete('/sub/delete/{id}', 'Admin\SubscriptionCtrl@delete');
 }); 

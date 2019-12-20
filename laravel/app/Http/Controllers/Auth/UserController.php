@@ -22,7 +22,7 @@ class UserController extends Controller
         
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['status' => false,'error' => 'invalid_credentials'], 400);
+                return response()->json(['status' => false,'error' => 'invalid_credentials'], 200);
             }
             else{
                 return response()->json([
