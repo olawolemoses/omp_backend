@@ -400,7 +400,7 @@
       $request->session()->put('cart', $cart);
     }
 
-    public function removecart() {
+    public function removecart(Request $request, $id) {
 
       $gs = Generalsetting::findOrFail(1);
       if ($request->session()->has('currency')) {
@@ -414,7 +414,7 @@
       $cart = new Cart($oldcart);
       
       $cart->removeItem($id);
-      if (count($cart->items) > 0) {
+      if (count((array)$cart->items) > 0) {
 
         $request->session()->put('cart', $cart); 
         $data[0] = $cart->totalPrice; 

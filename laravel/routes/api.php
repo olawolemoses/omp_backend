@@ -61,7 +61,8 @@ Route::group(['prefix' => 'v1'], function(){
     // CHECKOUT SECTION ENDS
 
     Route::get('/', 'Front\FrontendCtrl@index');
-    Route::get('/product/{id}','Front\FrontendCtrl@show');
+    Route::get('/product/{slug}','Front\CatalogCtrl@product');
+    Route::get('/product/{id}/{category}','Front\CatalogCtrl@relatedproduct');
     Route::get('/extras', 'Front\FrontendCtrl@extraIndex');
     Route::get('/currency/{id}', 'Front\FrontendCtrl@currency');
     Route::get('/language/{id}', 'Front\FrontendCtrl@language');

@@ -168,6 +168,32 @@
       $this->total_quantity++;
     }
     // **************** ADD TO CART MULTIPLE ENDS *******************
+
+    // **************** REDUCING QUANTITY ENDS *******************
+
+    public function updateLicense($id,$license) {
+
+        $this->items[$id]['license'] = $license;
+    }
+
+    public function updateColor($item, $id,$color) {
+
+        $this->items[$id]['color'] = $color;
+    }
+
+    public function removeItem($id) {
+        $this->totalQty -= $this->items[$id]['qty'];
+        $this->totalPrice -= $this->items[$id]['price'];
+        unset($this->items[$id]);
+            if(Session::has('current_discount')) {
+                    $data = Session::get('current_discount');
+                if (array_key_exists($id, $data)) {
+                    unset($data[$id]);
+                    Session::put('current_discount',$data);
+                }
+            }
+
+    }
     
   }
   
