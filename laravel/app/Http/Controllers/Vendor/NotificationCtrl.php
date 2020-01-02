@@ -4,7 +4,7 @@
 
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
-  use App\UserNotification;
+  use App\Models\UserNotification;
 
   class NotificationCtrl extends Controller
   {

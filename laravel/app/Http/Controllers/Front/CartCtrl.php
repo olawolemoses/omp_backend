@@ -4,11 +4,11 @@
 
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
-  use App\Cart;
-  use App\Product;
-  use App\Currency;
-  use App\Coupon;
-  use App\Generalsetting;
+  use App\Models\Cart;
+  use App\Models\Product;
+  use App\Models\Currency;
+  use App\Models\Coupon;
+  use App\Models\Generalsetting;
 
   use Session;
 

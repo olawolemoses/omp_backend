@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use App\Subscription;
-use App\Generalsetting;
-use App\UserSubscription;
-use App\FavoriteSeller;
+use App\Models\Subscription;
+use App\Models\Generalsetting;
+use App\Models\UserSubscription;
+use App\Models\FavoriteSeller;
 
 class UserCtrl extends Controller
 {

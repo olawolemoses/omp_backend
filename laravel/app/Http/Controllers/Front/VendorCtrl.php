@@ -3,14 +3,14 @@
   namespace App\Http\Controllers\Front;
 
   use App\Classes\GeniusMailer;
-  use App\User;
-  use App\Conversation;
-  use App\Message;
-  use App\Product;
-  use App\Category;
-  use App\Subcategory;
-  use App\Childcategory;
-  use App\Generalsetting;
+  use App\Models\User;
+  use App\Models\Conversation;
+  use App\Models\Message;
+  use App\Models\Product;
+  use App\Models\Category;
+  use App\Models\Subcategory;
+  use App\Models\Childcategory;
+  use App\Models\Generalsetting;
   use Illuminate\Support\Facades\DB;
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;

@@ -4,8 +4,8 @@
 
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
-  use App\Wishlist;
-  use App\Product;
+  use App\Models\Wishlist;
+  use App\Models\Product;
   use Auth;
 
   class WishlistCtrl extends Controller 

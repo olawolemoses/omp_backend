@@ -5,7 +5,7 @@
   use App\Http\Controllers\Controller;
   use Illuminate\Support\Facades\Input;
   use Illuminate\Http\Request;
-  use App\Service;
+  use App\Models\Service;
   use Auth;
   use Datatables;
   use DB;

@@ -5,9 +5,9 @@
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
   use Auth;
-  use App\Order;
-  use App\Product;
-  use App\PaymentGateway;
+  use App\Models\Order;
+  use App\Models\Product;
+  use App\Models\PaymentGateway;
 
   class OrderCtrl extends Controller 
   {

@@ -3,17 +3,17 @@
 	namespace App\Http\Controllers\Front;
 
 	use App\Http\Controllers\Controller;
-	use App\Category;
-	use App\Childcategory;
-	use App\Comment;
-	use App\Currency;
-	use App\Order;
-	use App\Product;
-	use App\ProductClick;
-	use App\Rating;
-	use App\Reply;
-	use App\Report;
-	use App\Subcategory;
+	use App\Models\Category;
+	use App\Models\Childcategory;
+	use App\Models\Comment;
+	use App\Models\Currency;
+	use App\Models\Order;
+	use App\Models\Product;
+	use App\Models\ProductClick;
+	use App\Models\Rating;
+	use App\Models\Reply;
+	use App\Models\Report;
+	use App\Models\Subcategory;
 	use Auth;
 	use Carbon\Carbon;
 	use Illuminate\Http\Request;
@@ -25,14 +25,23 @@
 
 	class CatalogCtrl extends Controller {
 
-
 		// -------------------------------- CATEGORY SECTION ----------------------------------------
+		public function categories(Request $request) {
+
+			$cats = Category::all();
+
+			return response() -> json([
+				'success' => true,
+				'data' => compact('cats')
+			], 201);
+
+		}
 
 		public function category(Request $request, $slug) {
 
-			$this -> code_image();
+			$this->code_image();
 			$sort = "";
-			$cat = Category:: where('slug', '=', $slug) -> first();
+			$cat = Category::where('slug', '=', $slug) -> first();
 			$oldcats = $cat -> products() -> where('status', '=', 1) -> orderBy('id', 'desc') -> get();
 			$cats = (new Collection(Product:: filterProducts($oldcats))) -> paginate(9);
 			// Search By Price
@@ -133,7 +142,6 @@
 			}
 
 			// Otherwise Go To Category
-
 			if ($request -> ajax()) {
 				return view('front.pagination.category', compact('subcat', 'sort', 'cats'));
 			}
@@ -203,6 +211,7 @@
 
 
 		public function tag(Request $request, $tag) {
+
 			$this -> code_image();
 			$tags = $tag;
 			$sort = '';

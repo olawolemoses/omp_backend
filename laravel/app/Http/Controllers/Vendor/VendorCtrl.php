@@ -3,12 +3,12 @@
   namespace App\Http\Controllers\Vendor;
 
   use App\Http\Controllers\Controller;
-  use App\Category;
-  use App\Childcategory;
-  use App\Conversation;
-  use App\Generalsetting;
-  use App\Subcategory;
-  use App\VendorOrder;
+  use App\Models\Category;
+  use App\Models\Childcategory;
+  use App\Models\Conversation;
+  use App\Models\Generalsetting;
+  use App\Models\Subcategory;
+  use App\Models\VendorOrder;
   use Auth;
   use Illuminate\Http\Request;
   use DB;

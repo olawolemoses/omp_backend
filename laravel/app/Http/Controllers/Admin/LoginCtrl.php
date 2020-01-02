@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin;
+use App\Models\Admin;
 // use Firebase\JWT\JWT;
 
 // use Firebase\JWT\ExpiredException;

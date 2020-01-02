@@ -5,10 +5,10 @@
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
   use Auth;
-  use App\Currency;
-  use App\Generalsetting;
-  use App\User;
-  use App\Withdraw;
+  use App\Models\Currency;
+  use App\Models\Generalsetting;
+  use App\Models\User;
+  use App\Models\Withdraw;
   use Illuminate\Support\Facades\Input;
   use Validator;
 

@@ -4,14 +4,14 @@
 
   use App\Classes\GeniusMailer;
   use App\Http\Controllers\Controller;
-  use App\Blog;
-  use App\BlogCategory;
-  use App\Counter;
-  use App\Generalsetting;
-  use App\Order;
-  use App\Product;
-  use App\Subscriber;
-  use App\User;
+  use App\Models\Blog;
+  use App\Models\BlogCategory;
+  use App\Models\Counter;
+  use App\Models\Generalsetting;
+  use App\Models\Order;
+  use App\Models\Product;
+  use App\Models\Subscriber;
+  use App\Models\User;
   use Carbon\Carbon;
   use Illuminate\Http\Request;
   use Illuminate\Support\Collection;
