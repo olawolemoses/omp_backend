@@ -126,7 +126,7 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     // User Logout
     Route::get('/logout', 'User\LoginController@logout');
     // User Logout Ends
-
+    
 });
 
 
