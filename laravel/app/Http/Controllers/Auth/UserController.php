@@ -13,12 +13,12 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function authenticate(Request $request)
-    {
+
+    public function authenticate(Request $request) {
+        
         $credentials = $request->only('email', 'password');
 
         $user = User::whereEmail($request->email)->first();
-
         
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -40,8 +40,8 @@ class UserController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function registration(Request $request)
-    {
+    public function registration(Request $request) {
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',

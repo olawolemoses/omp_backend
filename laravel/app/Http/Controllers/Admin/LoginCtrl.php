@@ -6,7 +6,6 @@ use App\Models\Admin;
 // use Firebase\JWT\JWT;
 
 // use Firebase\JWT\ExpiredException;
-
 use JWTAuth;
 
 use Illuminate\Support\Facades\Auth;
