@@ -4,14 +4,14 @@
 
   use App\Classes\GeniusMailer;
   use App\Http\Controllers\Controller;
-  use App\Blog;
-  use App\BlogCategory;
-  use App\Counter;
-  use App\Generalsetting;
-  use App\Order;
-  use App\Product;
-  use App\Subscriber;
-  use App\User;
+  use App\Models\Blog;
+  use App\Models\BlogCategory;
+  use App\Models\Counter;
+  use App\Models\Generalsetting;
+  use App\Models\Order;
+  use App\Models\Product;
+  use App\Models\Subscriber;
+  use App\Models\User;
   use Carbon\Carbon;
   use Illuminate\Http\Request;
   use Illuminate\Support\Collection;
@@ -134,7 +134,7 @@
       // $ps = DB::table('pagesettings')->find(1);
       // $partners = DB::table('partners')->get();
       // $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->take(8)->get();
-      $feature_products =  Product::where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
+      $feature_products =  Product::with('ratings')->where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
       $best_products = Product::where('best','=',1)->where('status','=',1)->take(3)->latest()->get(); 
       // $top_products = Product::where('top','=',1)->where('status','=',1)->take(8)->get();
       // $big_products = Product::where('big','=',1)->where('status','=',1)->take(6)->get();

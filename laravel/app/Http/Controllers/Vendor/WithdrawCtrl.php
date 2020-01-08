@@ -2,11 +2,11 @@
 
   namespace App\Http\Controllers\Vendor;
 
-  use App\User;
-  use App\Withdraw;
-  use App\Generalsetting;
+  use App\Models\User;
+  use App\Models\Withdraw;
+  use App\Models\Generalsetting;
   use Auth;
-  use App\Currency;
+  use App\Models\Currency;
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
 

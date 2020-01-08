@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Product;
-use App\Order;
-use App\Category;
-use App\Subcategory;
-use App\Childcategory;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Childcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;

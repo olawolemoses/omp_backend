@@ -4,14 +4,14 @@
 
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
-  use App\Wishlist;
-  use App\Product;
+  use App\Models\Wishlist;
+  use App\Models\Product;
   use Auth;
 
   class WishlistCtrl extends Controller 
   {
 
-    public function wishlist (Request $request) {
+    public function wishlists (Request $request) {
 
       $sort = '';
       $user = Auth::user();
@@ -38,14 +38,15 @@
               
         return response()->json([
           'success' => true,
-          'data' => compact($wishlists, $sort)
+          'data' => compact('wishlists', 'sort')
         ], 201);
       }
 
       $wishlists = Wishlist::where('user_id','=',$user->id)->paginate(8);
+
       return response()->json([
         'success' => true,
-        'data' => compact($wishlists, $sort)
+        'data' => compact('wishlists', 'sort')
       ], 201);
 
     }
@@ -56,7 +57,10 @@
       $data[0] = 0;
       $ck = Wishlist::where('user_id','=',$user->id)->where('product_id','=',$id)->get()->count();
       if ($ck > 0) {
-        return respose()->json($data);
+        return response()->json([
+          'success' => true,
+          'data' => 'Succesfully Added'
+        ], 201);
       }
       
       $wish = new Wishlist();
@@ -65,17 +69,24 @@
       $wish->save();
       $data[0] = 1; 
       $data[1] = count($user->wishlists);
-      return response()->json($data); 
+      return response()->json([
+        'success' => true,
+        'msg' => 'Successfully Added'
+      ], 201); 
     }
 
-    public function removewish( )
-    {
+    public function removewish() {
+
       $user = Auth::user();
       $wish = Wishlist::findOrFail($id);
       $wish->delete();        
       $data[0] = 1; 
       $data[1] = count($user->wishlists);
-      return response()->json($data);
+
+      return response()->json([
+        'success' => true,
+        'msg' => 'Successfully Removed'
+      ], 201);
     }
 
   }

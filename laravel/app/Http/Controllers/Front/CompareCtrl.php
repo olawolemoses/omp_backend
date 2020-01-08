@@ -5,8 +5,8 @@
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
   use Session;
-  use App\Compare;
-  use App\Product;
+  use App\Models\Compare;
+  use App\Models\Product;
 
   class CompareCtrl extends Controller
   {

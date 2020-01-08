@@ -4,17 +4,17 @@
 
   use App\Classes\GeniusMailer;
   use App\Http\Controllers\Controller;
-  use App\Cart;
-  use App\Coupon;
-  use App\Currency;
-  use App\Generalsetting;
-  use App\Notification;
-  use App\Order;
-  use App\OrderTrack;
-  use App\Product;
-  use App\User;
-  use App\UserNotification;
-  use App\VendorOrder;
+  use App\Models\Cart;
+  use App\Models\Coupon;
+  use App\Models\Currency;
+  use App\Models\Generalsetting;
+  use App\Models\Notification;
+  use App\Models\Order;
+  use App\Models\OrderTrack;
+  use App\Models\Product;
+  use App\Models\User;
+  use App\Models\UserNotification;
+  use App\Models\VendorOrder;
   use Config;
   use Illuminate\Http\Request;
   use Illuminate\Support\Facades\Auth;

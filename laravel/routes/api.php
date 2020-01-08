@@ -32,7 +32,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/category/{slug}','Front\CatalogCtrl@category');
     Route::get('/category/{slug1}/{slug2}','Front\CatalogCtrl@subcategory');
     Route::get('/category/{slug1}/{slug2}/{slug3}','Front\CatalogCtrl@childcategory');
-    Route::get('/categories/','Front\CatalogCtrl@categories');
+    Route::get('/categories','Front\CatalogCtrl@categories');
     // CATEGORY SECTION ENDS
 
     // CART SECTION  
@@ -124,9 +124,9 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     // User Orders Ends
 
     // User Logout
-    Route::get('/logout', 'User\LoginController@logout');
+    Route::get('/logout', 'User\UserController@logout');
     // User Logout Ends
-
+    
 });
 
 

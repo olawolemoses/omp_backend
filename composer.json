@@ -4,6 +4,8 @@
     "description": "The Laravel Framework",
 
     "require": {
-        "tymon/jwt-auth": "1.0.*"
+        "tymon/jwt-auth": "^0.5.12"
+    },
+    "require-dev": {
     }
 }

@@ -4,8 +4,8 @@
 
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
-  use App\Gallery;
-  use App\Product;
+  use App\Models\Gallery;
+  use App\Models\Product;
   use Image;
   use Auth;
 
