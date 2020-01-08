@@ -9,7 +9,7 @@
     protected $fillable = ['user_id', 'method', 'acc_email', 'iban', 'country', 'acc_name', 'address', 'swift', 'reference', 'amount', 'fee', 'created_at', 'updated_at', 'status'];
 
     public function user() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\Models\User');
     }
 
   }

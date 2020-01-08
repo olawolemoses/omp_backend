@@ -30,43 +30,43 @@
     }
 
     public function category() {
-      return $this->belongsTo('App\Category');
+      return $this->belongsTo('App\Models\Category');
     }
 
     public function subcategory() {
-      return $this->belongsTo('App\Subcategory');
+      return $this->belongsTo('App\Models\Subcategory');
     }
 
     public function childcategory() {
-      return $this->belongsTo('App\Childcategory');
+      return $this->belongsTo('App\Models\Childcategory');
     }
 
     public function galleries() {
-      return $this->hasMany('App\Gallery');
+      return $this->hasMany('App\Models\Gallery');
     }
 
     public function ratings() {
-      return $this->hasMany('App\Rating');
+      return $this->hasMany('App\Models\Rating');
     }
 
     public function wishlists() {
-      return $this->hasMany('App\Wishlist');
+      return $this->hasMany('App\Models\Wishlist');
     }
 
     public function comments() {
-      return $this->hasMany('App\Comment');
+      return $this->hasMany('App\Models\Comment');
     }
 
     public function clicks() {
-      return $this->hasMany('App\ProductClick');
+      return $this->hasMany('App\Models\ProductClick');
     }
 
     public function user() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\Models\User');
     }
 
     public function reports() {
-      return $this->hasMany('App\Report','user_id');
+      return $this->hasMany('App\Models\Report','user_id');
     }
 
     public function vendorPrice() {

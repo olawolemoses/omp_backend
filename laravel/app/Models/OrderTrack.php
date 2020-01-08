@@ -9,7 +9,7 @@
     protected $fillable = ['order_id', 'title','text'];
 
     public function order() {
-      return $this->belongsTo('App\Order', 'order_id');
+      return $this->belongsTo('App\Models\Order', 'order_id');
     }
 
   }

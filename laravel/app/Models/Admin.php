@@ -42,7 +42,7 @@ class Admin extends Authenticatable implements JWTSubject
 
     public function role()
     {
-    	return $this->belongsTo('App\Role');
+    	return $this->belongsTo('App\Models\Role');
     }
  
     /**

@@ -10,11 +10,11 @@ class Category extends Model
   public $timestamps = false;
 
   public function subs() {
-    return $this->hasMany('App\Subcategory')->where('status','=',1);
+    return $this->hasMany('App\Models\Subcategory')->where('status','=',1);
   }
 
   public function products() {
-    return $this->hasMany('App\Product');
+    return $this->hasMany('App\Models\Product');
   }
   
   public function setSlugAttribute($value) {

@@ -124,7 +124,7 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     // User Orders Ends
 
     // User Logout
-    Route::get('/logout', 'User\LoginController@logout');
+    Route::get('/logout', 'User\UserController@logout');
     // User Logout Ends
     
 });

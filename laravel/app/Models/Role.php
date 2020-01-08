@@ -12,7 +12,7 @@ class Role extends Model{
     protected $table = 'roles';
     public function admins()
     {
-        return $this->hasMany('App\Admin');
+        return $this->hasMany('App\Models\Admin');
     }
 
 

@@ -12,15 +12,15 @@
     protected $table = 'subcategories';
 
     public function childs() {
-    	return $this->hasMany('App\Childcategory')->where('status','=',1);
+    	return $this->hasMany('App\Models\Childcategory')->where('status','=',1);
     }
 
     public function category() {
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo('App\Models\Category');
     }
     
     public function products() {
-      return $this->hasMany('App\Product');
+      return $this->hasMany('App\Models\Product');
     }
     
     public function setSlugAttribute($value) {

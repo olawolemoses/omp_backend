@@ -9,11 +9,11 @@
     public $timestamps = false;
 
     public function user() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\Models\User');
     }
 
     public function vendor() {
-      return $this->belongsTo('App\User','user_id');
+      return $this->belongsTo('App\Models\User','user_id');
     }
     
   }

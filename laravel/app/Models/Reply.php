@@ -9,15 +9,15 @@
     protected $fillable = ['comment_id', 'user_id','text'];
 
     public function user() {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\Models\User');
     }
 
     public function comment() {
-    	return $this->belongsTo('App\Comment');
+    	return $this->belongsTo('App\Models\Comment');
     }
 
     public function subreplies() { 
-      return $this->hasMany('App\SubReply');
+      return $this->hasMany('App\Models\SubReply');
     }
 
   }

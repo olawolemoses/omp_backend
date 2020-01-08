@@ -7,15 +7,15 @@
   class Conversation extends Model
   {
     public function sent() {
-      return $this->belongsTo('App\User', 'sent_user');
+      return $this->belongsTo('App\Models\User', 'sent_user');
     }
 
     public function recieved() {
-      return $this->belongsTo('App\User', 'reciever_user');
+      return $this->belongsTo('App\Models\User', 'reciever_user');
     }
 
     public function messages() {
-      return $this->hasMany('App\Message');
+      return $this->hasMany('App\Models\Message');
     }
     
   }

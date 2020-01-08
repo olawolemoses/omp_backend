@@ -11,11 +11,11 @@ class Childcategory extends Model
   public $timestamps = false;
 
   public function subcategory() {
-    return $this->belongsTo('App\Subcategory');
+    return $this->belongsTo('App\Models\Subcategory');
   }
 
   public function products() {
-    return $this->hasMany('App\Product');
+    return $this->hasMany('App\Models\Product');
   }
   
   public function setSlugAttribute($value) {

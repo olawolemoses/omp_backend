@@ -9,11 +9,11 @@
     public $timestamps = false;
     
     public function user() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\Models\User');
     }
 
     public function order() {
-      return $this->belongsTo('App\Order');
+      return $this->belongsTo('App\Models\Order');
     }
 
   }

@@ -9,7 +9,7 @@
     protected $fillable =  ['consation_id', 'message', 'sent_user', 'received_user'];
 
     public function conersation() {
-      return $this->belongTo('App\conversation');
+      return $this->belongTo('App\Models\conversation');
     }
 
   }
