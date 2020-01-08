@@ -137,7 +137,11 @@ Route::post('/v1/vendor/login', 'Vendor\SignupCtrl@authenticate');
 
 
 Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function ()  {
-    
+
+    Route::put('/update/{id}', 'Vendor\SignupCtrl@updated');
+    Route::post('/check/{id}', 'Vendor\SignupCtrl@checkpassword');
+
+
     // Order Notification
     Route::get('/order/notf/show/{id}', 'Vendor\NotificationController@order_notf_show');
     Route::get('/order/notf/count/{id}','Vendor\NotificationController@order_notf_count');
@@ -223,6 +227,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::put('subcategory/update/{id}','Admin\SubcategoryCtrl@edit');
     Route::get('subcategory','Admin\SubcategoryCtrl@show');
     Route::get('subcategory/{id}','Admin\SubcategoryCtrl@view');
+    Route::get('/subcats/{category_name}','Admin\SubcategoryCtrl@get');
     Route::delete('subcategory/delete/{id}','Admin\SubcategoryCtrl@delete');
 
 
@@ -231,6 +236,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::put('childcategory/update/{id}','Admin\ChildcategoryCtrl@edit');
     Route::get('childcategory','Admin\ChildcategoryCtrl@show');
     Route::get('childcategory/{id}','Admin\ChildcategoryCtrl@view');
+    Route::get('/childcats/{subcategory_name}','Admin\ChildcategoryCtrl@get');
     Route::delete('childcategory/delete/{id}','Admin\ChildcategoryCtrl@delete');
 
     //Order

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use Cloudder;
 
+
 class ProductCtrl extends Controller
 {
 
@@ -276,5 +277,7 @@ class ProductCtrl extends Controller
         }
     
     }
+
+   
 
 }

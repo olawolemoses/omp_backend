@@ -92,6 +92,26 @@ class ChildcategoryCtrl extends Controller
 
     }
 
+    public function get(Request $request, $subcategory_name){
+        $childcategory = Childcategory::where('subcategory_name', $subcategory_name)->get();
+
+        if(!$childcategory)
+        {
+            return response() ->json([
+                'status' =>false,
+                'data' => 'Child category could not be found'
+            ], 404);
+        }
+
+
+        return response() ->json([
+            'status' =>true,
+            'data' => [
+                'childcategory' =>$childcategory
+            ],
+        ], 200);
+    }
+
     public function view(Request $request, $id)
     {
         $childcategory = Childcategory::findOrFail($id);

@@ -10,6 +10,7 @@
   use Cloudder;
   use Hash;
   use JWTAuth;
+  use Log;
 
 
   class SignupCtrl extends controller{
@@ -148,22 +149,29 @@
                 return response()->json(['status' => false,'error' => 'invalid_credentials'], 200);
             }
             else{
-                $ven = User::where('is_vendor','=','1');
-                    if($ven){
+                // $ven = $user->id::where('is_vendor','=',1);
+                $ven = $user->id;
+                $gs = User::find($ven);
+                $gs1 =$user->password;
 
-                        return response()->json([
-                            'status' => true,
-                            'data' => [ 'user' => $user],
-                            'data' => [ 'user' => $user],
-                        'token' => JWTAuth::fromUser($user),
-                        // 'token' => $this->getAuthTokenData($user),
-                    ], 201); 
-                    }
-                    else{
-                        return response()->json(['status' => false,'error' => 'User not registered as vendor'], 200);
-
-                    }
                 
+                if($gs->is_vendor == 1){
+                    return response()->json([
+                        'status' => true,
+                        'data' => [ 'user' => $gs],
+
+                        'token' => JWTAuth::fromUser($user),
+                    // 'token' => $this->getAuthTokenData($user),
+                ], 201); 
+
+                }
+
+
+                else{
+                    return response()->json(['status' => false,'error' => 'User not registered as vendor'], 200);
+                    
+                }
+            
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
@@ -190,23 +198,66 @@
         ], 200);
     }
 
-    public function delete(Request $request, $id)
-    {
-        $user =  User::findOrFail($id);
-        $user->delete();
+    public function checkpassword (Request $request, $id){
+        $vendor = User::findOrFail($id);
 
-        if(!$user){
+        $hasher = app()->make('hash');
+        if(!$vendor){
             return response() ->json([
                 'status' =>false,
-                'data' => 'users could not be deleted'
+                'data' => 'vendor could not be found'
             ]);
         }
+        else{
+           
+            $gs = $hasher->check($request->input('password'),$vendor->password);
+            
+            if($gs){
+             
+                    return response() ->json([
+                        'status' =>true,
+                        'message' =>'Password exists',
+                    ], 200);
+    
+            }
+            else
+                {
+                    return response()->json([
+                        'status' =>false,
+                        'message' =>'Incorrect password',
+                    ],200);
+            
+                }
+       
+        }
 
+                
+        }
+    
 
-        return response() ->json([
-            'status' =>true,
-            'message' =>"user deleted successfully"
-        ], 200);
+ 
+    
+    
+    public function delete(Request $request, $id)
+        {
+            $user =  User::findOrFail($id);
+            $user->delete();
+    
+            if(!$user){
+                return response() ->json([
+                    'status' =>false,
+                    'data' => 'users could not be deleted'
+                ]);
+            }
+    
+    
+            return response() ->json([
+                'status' =>true,
+                'message' =>"user deleted successfully"
+            ], 200);
+        
+
+       
     }
 
     public function all(Request $request)
@@ -232,6 +283,37 @@
         }
     }
 
+     public function updated (Request $request, $id){
+       
+        $vendor = User::findOrFail($id);
 
+        $vendor->phone = $request->phone;
+        $vendor->name = $request->name;
+        $vendor->password = Hash::make($request->password);
+        $vendor->email = $request->email;
+        $vendor->address = $request->address;
+        $vendor->zip = $request->zip;
+        $vendor->city = $request->city;
+        $vendor->state = $request->state;
+        $vendor->shop_name = $request->shop_name;
+        $vendor->shop_details = $request->shop_details;
+        $vendor->current_balance = $request->current_balance;
+
+
+        $vendor->update();
+
+        if($vendor){
+            return response() ->json([
+                'status' =>'success',
+                'message' =>'Profile updated successfully'
+            ], 200);  
+        }
+
+        return response() ->json([
+            'status' =>false,
+            'message' =>'Failed to update profile'
+        ], 200);
+
+    }  
 
   }

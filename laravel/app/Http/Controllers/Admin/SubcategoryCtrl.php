@@ -69,6 +69,7 @@ class SubcategoryCtrl extends Controller
     //fetch all roles
     public function show(Request $request)
     {
+      
         $subcategory = Subcategory::latest('id')->get();
 
         if(!$subcategory)
@@ -78,6 +79,26 @@ class SubcategoryCtrl extends Controller
                 'data' => 'Subcategories could not be found'
             ], 404);
         }
+
+        return response() ->json([
+            'status' =>true,
+            'data' => [
+                'subCategory' =>$subcategory
+            ],
+        ], 200);
+    }
+
+    public function get(Request $request, $category_name){
+        $subcategory = Subcategory::where('category_name', $category_name)->get();
+
+        if(!$subcategory)
+        {
+            return response() ->json([
+                'status' =>false,
+                'data' => 'Subcategories could not be found'
+            ], 404);
+        }
+
 
         return response() ->json([
             'status' =>true,

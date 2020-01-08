@@ -37,7 +37,7 @@ class ProductCtrl extends Controller
             'category_name' => 'required | string',   
             'name' => 'required | string',
             'photo' => 'mimes:jpeg,jpg,png,svg',
-            'thumbnail' => 'mimes:jpeg,jpg,png,svg',
+            // 'thumbnail' => 'mimes:jpeg,jpg,png,svg',
             'price' => 'required',
             'details' => 'required | string',
             'policy' => 'required | string',
