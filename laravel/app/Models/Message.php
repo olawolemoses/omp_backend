@@ -6,7 +6,7 @@
 
   class Message extends Model
   {
-    protected $fillable =  ['consation_id', 'message', 'sent_user', 'received_user'];
+    protected $fillable =  ['conversation_id', 'message','subject', 'sent_user', 'recieved_user'];
 
     public function conersation() {
       return $this->belongTo('App\Models\conversation');

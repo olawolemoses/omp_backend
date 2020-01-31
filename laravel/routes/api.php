@@ -129,16 +129,29 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     
 });
 
+//..............Message Section.........
+Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/message'], function ()  {
+
+Route::get('/{id}', 'Vendor\MessagesCtrl@messageshow');
+Route::get('/recieved/{recieved_user}', 'Vendor\MessagesCtrl@recievedmsg');
+Route::get('/sent/{sent_user}', 'Vendor\MessagesCtrl@sentmessage');
+Route::delete('/delete/{id}', 'Vendor\MessagesCtrl@messagedelete');
+Route::post('/', 'Vendor\MessagesCtrl@postmessage');
+
+
+});
 
 //------------ VENDOR SECTION ------------
 
+//Login and Signup 
 Route::post('/v1/vendor/signup', 'Vendor\SignupCtrl@create');
 Route::post('/v1/vendor/login', 'Vendor\SignupCtrl@authenticate');
 
-
 Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function ()  {
 
+    //EditProfile
     Route::put('/update/{id}', 'Vendor\SignupCtrl@updated');
+    Route::put('/password/{id}', 'Vendor\SignupCtrl@password');
     Route::post('/check/{id}', 'Vendor\SignupCtrl@checkpassword');
 
 

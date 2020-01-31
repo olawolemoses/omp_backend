@@ -283,6 +283,30 @@
         }
     }
 
+    public function password (Request $request, $id){
+       
+        $vendor = User::findOrFail($id);
+
+       
+        $vendor->password = Hash::make($request->password);
+
+        $vendor->update();
+
+        if($vendor){
+            return response() ->json([
+                'status' =>'success',
+                'message' =>'Password updated successfully'
+            ], 200);  
+        }
+
+        return response() ->json([
+            'status' =>false,
+            'message' =>'Failed to update password'
+        ], 200);
+
+    }  
+
+
      public function updated (Request $request, $id){
        
         $vendor = User::findOrFail($id);

@@ -16,7 +16,7 @@
           $orders = VendorOrder::where('user_id', '=', $user->id)->orderBy('id', 'desc')->get()->groupBy('order_number');
 
           return response()->json([
-            'z' => true,
+            'status' => true,
             'data' => compact('user','orders')
           ], 201);
       }
