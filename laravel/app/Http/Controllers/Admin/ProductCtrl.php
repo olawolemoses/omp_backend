@@ -130,6 +130,7 @@ class ProductCtrl extends Controller
         $product ->discount_date = $request->discount_date;
         $product ->whole_sell_qty = $request->whole_sell_qty;
         $product ->whole_sell_discount = $request->whole_sell_discount;
+        $product ->packaging_price = $request->packaging_price;
 
         $product->save();
 
