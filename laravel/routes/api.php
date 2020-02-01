@@ -21,21 +21,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'v1'], function(){
-    
+
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
     // Route::post('/password/forgot', 'Auth\ForgotPasswordCtrl@requestEmail');
     // // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
     // Route::post('/password/change', 'Auth\ChangePasswordCtrl');
 
-    // CATEGORY SECTION  
+    // CATEGORY SECTION
     Route::get('/category/{slug}','Front\CatalogCtrl@category');
     Route::get('/category/{slug1}/{slug2}','Front\CatalogCtrl@subcategory');
     Route::get('/category/{slug1}/{slug2}/{slug3}','Front\CatalogCtrl@childcategory');
     Route::get('/categories','Front\CatalogCtrl@categories');
     // CATEGORY SECTION ENDS
 
-    // CART SECTION  
+    // CART SECTION
     Route::get('/carts','Front\CartCtrl@cart');
     Route::get('/addcart/{id}','Front\CartCtrl@addcart');
     Route::get('/addtocart/{id}','Front\CartCtrl@addtocart');
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/carts/coupon/check','Front\CartCtrl@couponcheck');
     // CART SECTION ENDS
 
-    // CHECKOUT SECTION  
+    // CHECKOUT SECTION
     Route::get('/checkout/','Front\CheckoutCtrl@checkout');
     Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutCtrl@loadpayment');
     Route::get('/order/track/{id}','Front\FrontendCtrl@trackload');
@@ -71,24 +71,28 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/blog','Front\FrontendCtrl@blog');
     Route::get('/blog/{id}','Front\FrontendCtrl@blogshow');
     Route::get('/blog/category/{slug}','Front\FrontendCtrl@blogcategory');
-    Route::get('/blog/tag/{slug}','Front\FrontendCtrl@blogtags');  
+    Route::get('/blog/tag/{slug}','Front\FrontendCtrl@blogtags');
     Route::get('/blog-search','Front\FrontendCtrl@blogsearch');
     Route::get('/blog/archive/{slug}','Front\FrontendCtrl@blogarchive');
     // BLOG SECTION ENDS
 
-    // FAQ SECTION  
+    // FAQ SECTION
     Route::get('/faq','Front\FrontendCtrl@faq');
     // FAQ SECTION ENDS
 
-    // CONTACT SECTION  
+    // CONTACT SECTION
     Route::get('/contact','Front\FrontendCtrl@contact');
     Route::post('/contact','Front\FrontendCtrl@contactemail');
     Route::get('/contact/refresh_code','Front\FrontendCtrl@refresh_code');
     // CONTACT SECTION  ENDS
 
-    // PRODCT AUTO SEARCH SECTION  
+    // PRODCT AUTO SEARCH SECTION
     Route::get('/autosearch/product/{slug}','Front\FrontendCtrl@autosearch');
     // PRODCT AUTO SEARCH SECTION ENDS
+
+    // TAG SECTION
+    Route::get('/search/','Front\CatalogCtrl@search');
+    // TAG SECTION ENDS
 
     // PAGE SECTION
     Route::get('/{slug}','Front\FrontendCtrl@page');
@@ -97,8 +101,8 @@ Route::group(['prefix' => 'v1'], function(){
 });
 
 Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function ()  {
-    
-    // User Profile 
+
+    // User Profile
     Route::get('/profile', 'User\UserCtrl@index');
     Route::post('/profile', 'User\UserCtrl@profileupdate');
     // User Profile Ends
@@ -119,14 +123,14 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     Route::get('/order/trackings/{id}', 'User\OrderCtrl@trackload');
     Route::get('/order/{id}', 'User\OrderCtrl@order');
     Route::get('/download/order/{slug}/{id}', 'User\OrderCtrl@orderdownload');
-    Route::get('print/order/print/{id}', 'User\OrderCtrl@orderprint'); 
-    Route::get('/json/trans','User\OrderCtrl@trans'); 
+    Route::get('print/order/print/{id}', 'User\OrderCtrl@orderprint');
+    Route::get('/json/trans','User\OrderCtrl@trans');
     // User Orders Ends
 
     // User Logout
     Route::get('/logout', 'User\UserController@logout');
     // User Logout Ends
-    
+
 });
 
 //..............Message Section.........
@@ -143,7 +147,7 @@ Route::post('/', 'Vendor\MessagesCtrl@postmessage');
 
 //------------ VENDOR SECTION ------------
 
-//Login and Signup 
+//Login and Signup
 Route::post('/v1/vendor/signup', 'Vendor\SignupCtrl@create');
 Route::post('/v1/vendor/login', 'Vendor\SignupCtrl@authenticate');
 
@@ -166,7 +170,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::post('/profile', 'Vendor\UserCtrl@profileupdate');
     // User Profile Ends
 
-    // Vendor Shipping Cost   
+    // Vendor Shipping Cost
     Route::get('/shipping-cost', 'Vendor\VendorCtrl@ship');
 
     //vendor details
@@ -174,10 +178,10 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::post('all/{id}', 'Vendor\SignupCtrl@show');
     Route::post('delete/{id]', 'Vendor\SignupCtrl@delete');
 
-    // Vendor Shipping Cost   
+    // Vendor Shipping Cost
     Route::get('/banner', 'Vendor\VendorCtrl@banner');
 
-    // Vendor Social   
+    // Vendor Social
     Route::get('/social', 'Vendor\VendorCtrl@social');
     Route::post('/social/update', 'Vendor\VendorCtrl@socialupdate');
 
@@ -186,8 +190,8 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
 
     Route::get('/service', 'Vendor\ServiceCtrl@index');
     Route::post('/service/create', 'Vendor\ServiceCtrl@create');
-    Route::put('/service/edit/{id}', 'Vendor\ServiceCtrl@update');  
-    Route::delete('/service/delete/{id}', 'Vendor\ServiceCtrl@destroy'); 
+    Route::put('/service/edit/{id}', 'Vendor\ServiceCtrl@update');
+    Route::delete('/service/delete/{id}', 'Vendor\ServiceCtrl@destroy');
 
 
     //get user details
@@ -205,7 +209,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::get('category/main','Admin\CategoryCtrl@show');
     Route::get('category/sub','Admin\SubcategoryCtrl@show');
     Route::get('category/child','Admin\SubcategoryCtrl@show');
-    
+
     //Order
     Route::get('/orders/{user_id}','Vendor\OrderCtrl@index');
 
@@ -226,7 +230,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::put('role/edit/{id}','Admin\RoleCtrl@edit');
     Route::delete('role/delete/{id}', 'Admin\RoleCtrl@delete');
 
-    
+
 
     //Category
     Route::post('category/create','Admin\CategoryCtrl@create');
@@ -256,7 +260,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('order/pending','Admin\OrderCtrls@index');
     Route::get('order/process','Admin\OrderCtrls@process');
     Route::get('order/complete','Admin\OrderCtrls@complete');
-   
+
     Route::get('order/declined','Admin\OrderCtrls@decline');
     Route::get('order/all','Admin\OrderCtrls@all');
     Route::get('order/recent','Admin\OrderCtrls@recent');
@@ -273,9 +277,9 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('recent','Admin\ProductCtrl@recent');
     Route::get('product/{id}','Admin\ProductCtrl@view');
     Route::delete('product/delete/{id}','Admin\ProductCtrl@delete');
-    
-    //------------ ADMIN ORDER SECTION ------------    
-   
+
+    //------------ ADMIN ORDER SECTION ------------
+
     Route::get('/orders', 'Vendor\OrderCtrl@index');
     Route::get('/order/{id}/show', 'Vendor\OrderCtrl@show');
     Route::get('/order/{id}/invoice', 'Vendor\OrderCtrl@invoice');
@@ -292,7 +296,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('/users/{id}', 'Admin\UserCtrl@view');
     Route::delete('/users/delete/{id}', 'Admin\UserCtrl@delete');
 
-    //get vendor 
+    //get vendor
     Route::get('/vendor/all', 'Vendor\SignupCtrl@all');
     Route::delete('/vendor/{id}', 'Vendor\SignupCtrl@delete');
     Route::get('/vendor/{id}', 'Vendor\SignupCtrl@show');
@@ -301,4 +305,4 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('/sub/all', 'Admin\SubscriptionCtrl@all');
     Route::get('/sub/{id}', 'Admin\SubscriptionCtrl@view');
     Route::delete('/sub/delete/{id}', 'Admin\SubscriptionCtrl@delete');
-}); 
+});

@@ -17,8 +17,4 @@
       return $this->belongsTo('App\Models\User');
     }
 
-    public static function ratings($productid) {
-      $stars = Rating::where();
-    }
-
   }

