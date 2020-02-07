@@ -113,10 +113,6 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     Route::get('/wishlist/remove/{id}','User\WishlistCtrl@removewish');
     // User Wishlist Ends
 
-    // User Profile
-    Route::get('profile', 'User\UserCtrl@index');
-    Route::post('profile', 'User\UserCtrl@profileupdate');
-
     // User Orders
     Route::get('/orders', 'User\OrderCtrl@orders');
     Route::get('/order/tracking', 'User\OrderCtrl@ordertrack');
