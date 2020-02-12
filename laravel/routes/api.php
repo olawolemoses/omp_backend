@@ -272,6 +272,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
 
     //Product
     Route::post('product/create','Admin\ProductCtrl@create');
+    Route::post('product/new','Admin\ProductCtrl@save');
     Route::put('product/update/{id}','Admin\ProductCtrl@edit');
     Route::get('product','Admin\ProductCtrl@show');
     Route::get('recent','Admin\ProductCtrl@recent');
