@@ -33,8 +33,7 @@ class ProductCtrl extends Controller
             'user_id' =>'required | numeric',
             'category_name' => 'required | string',   
             'name' => 'required | string',
-            'photo' => 'mimes:jpeg,jpg,png,svg',
-            'thumbnail' => 'mimes:jpeg,jpg,png,svg',
+            // 'photo' => 'mimes:jpeg,jpg,png,svg',
             'price' => 'required',
             'details' => 'required | string',
             'policy' => 'required | string',
@@ -42,6 +41,7 @@ class ProductCtrl extends Controller
             'tags' => 'required | string',
             'product_condition' => 'required | string',
             'type' => 'required | string',
+            
         ]);
 
         $product = new Product();
@@ -50,35 +50,28 @@ class ProductCtrl extends Controller
         $product ->product_type = $request->product_type;
         $product ->affiliate_link = $request->affiliate_link;
         $product ->user_id = $request->user_id;
-        // $cat = Category::findOrFail($request->category_id);
         $product ->category_name = $request->category_name;
         $product ->subcategory_name = $request->subcategory_name;
         $product ->childcategory_name = $request->childcategory_name; 
         $product ->name = $request->name;
         $product ->slug = $request->slug;
-        
-        
-        if($request->hasFile('photo') && $request->file('photo')->isValid()){
-            $cloudder = Cloudder::upload($request->file('photo')->getRealPath());
 
-            $uploadResult = $cloudder->getResult();
+        $photos = $request->file('photo');
+        $paths  = [];
+    
+        foreach ($photos as $photo) {
 
-            $file_url = $uploadResult["url"];
-            $product->photo = $file_url;
-            
+            $cloudder = Cloudder::upload($photo->getRealPath());
+
+                $uploadResult = $cloudder->getResult();
+    
+                $paths[]  = $uploadResult["url"];
+               
+                $product->photo = $paths;
+           
         }
-
-        if($request->hasFile('thumbnail') && $request->file('thumbnail')->isValid()){
-            $cloudder = Cloudder::upload($request->file('thumbnail')->getRealPath());
-
-            $uploadResult = $cloudder->getResult();
-
-            $file_url = $uploadResult["url"];
-            $product->thumbnail = $file_url;
-            
-        }
-
-       if($request->hasFile('file') && $request->file('file')->isValid()){
+    
+        if($request->hasFile('file') && $request->file('file')->isValid()){
             $cloudder = Cloudder::upload($request->file('file')->getRealPath());
 
             $uploadResult = $cloudder->getResult();
@@ -127,6 +120,7 @@ class ProductCtrl extends Controller
         $product ->discount_date = $request->discount_date;
         $product ->whole_sell_qty = $request->whole_sell_qty;
         $product ->whole_sell_discount = $request->whole_sell_discount;
+        $product ->packaging_price = $request->packaging_price;
 
         $product->save();
 
@@ -145,6 +139,7 @@ class ProductCtrl extends Controller
                 ],
             ], 201);
         }
+        
     }
 
     //fetch all product

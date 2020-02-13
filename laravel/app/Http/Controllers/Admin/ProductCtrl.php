@@ -171,10 +171,7 @@ class ProductCtrl extends Controller
     public function recent(Request $request)
     {
         $product = Product::limit(5)->latest()->get();
-        // $prod = $product->map(function($i) {
-        //     $i->photo = unserialize($i->photo);
-        //     return $i;
-        // });
+       
         if(!$product){
             return response() ->json([
                 'status' =>false,
