@@ -39,9 +39,9 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/carts','Front\CartCtrl@cart');
     Route::get('/addcart/{id}','Front\CartCtrl@addcart');
     Route::get('/addtocart/{id}','Front\CartCtrl@addtocart');
-    Route::get('/addnumcart','Front\CartCtrl@addnumcart');
-    Route::get('/addbyone','Front\CartCtrl@addbyone');
-    Route::get('/reducebyone','Front\CartCtrl@reducebyone');
+    Route::get('/addnumcart/{item}','Front\CartCtrl@addnumcart');
+    Route::get('/addbyone/{increment}','Front\CartCtrl@addbyone');
+    Route::get('/reducebyone/{decrement}','Front\CartCtrl@reducebyone');
     Route::get('/upcolor','Front\CartCtrl@upcolor');
     Route::get('/removecart/{id}','Front\CartCtrl@removecart');
     Route::get('/carts/coupon','Front\CartCtrl@coupon');

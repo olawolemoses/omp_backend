@@ -37,7 +37,7 @@ class CheckoutCtrl extends Controller
     if ($pay_id != 0) {
         $gateway = PaymentGateway::findOrFail($pay_id);
     }
-    
+
     return response()->json([
       'success' => true,
       'data' => compact('payment', 'pay_id', 'gateway', 'curr')
@@ -50,6 +50,7 @@ class CheckoutCtrl extends Controller
     if (!Session::has('cart')) {
       return redirect()->route('front.cart')->with('success', "You don't have any product to checkout.");
     }
+
     $gs = Generalsetting::findOrFail(1);
     $dp = 1;
     $vendor_shipping_id = 0;
@@ -136,7 +137,7 @@ class CheckoutCtrl extends Controller
             $total = Session::get('coupon_total');
             $total = $total + round(0 * $curr->value, 2);
         }
-                    
+
         return response()->json([
                                 'success' => true
                             ], 201, ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'total_quantity' => $cart->total_quantity, 'gateways' => $gateways, 'shipping_cost' => 0, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);
@@ -297,7 +298,7 @@ class CheckoutCtrl extends Controller
             $total = $total + round(0 * $curr->value, 2);
           }
           $ck = 1;
-          
+
           return response()->json([
             'success' => true
             ], 201, ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'total_quantity' => $cart->total_quantity, 'gateways' => $gateways, 'shipping_cost' => 0, 'checked' => $ck, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);
@@ -660,7 +661,7 @@ class CheckoutCtrl extends Controller
         $track->text = 'You have successfully placed your order.';
         $track->order_id = $order->id;
         $track->save();
-        
+
         $notification = new Notification;
         $notification->order_id = $order->id;
         $notification->save();
@@ -740,7 +741,7 @@ class CheckoutCtrl extends Controller
 
 
 
-        
+
 
         //Sending Email To Buyer
         if ($gs->is_smtp == 1) {
