@@ -41,6 +41,22 @@ class CategoryCtrl extends Controller
         $category ->slug = $request->slug;
         $category ->status = 1;
         $category ->is_featured =0;
+
+        // $photos = $request->file('photos');
+        // $paths  = [];
+    
+        // foreach ($photos as $photo) {
+
+        //     $cloudder = Cloudder::upload($photo->getRealPath());
+
+        //         $uploadResult = $cloudder->getResult();
+    
+        //         $paths[]  = $uploadResult["url"];
+        //         $category->photo = $paths ;
+           
+        // }
+    
+        // dd($paths);
         
         if($request->hasFile('photo') && $request->file('photo')->isValid()){
             $cloudder = Cloudder::upload($request->file('photo')->getRealPath());
