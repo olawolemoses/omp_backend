@@ -9,8 +9,8 @@ use App\Models\Product;
 use App\Models\Currency;
 use App\Models\Coupon;
 use App\Models\Generalsetting;
+use Illuminate\Support\Facades\Log;
 use Session;
-use Log;
 
 class CartCtrl extends Controller
 {
@@ -162,9 +162,9 @@ class CartCtrl extends Controller
         return response()->json($data);
     }
 
-    public function addnumcart(Request $request, $item)
-    {   
-        Log::info($item);
+    public function addnumcart(Request $request)
+    {
+        Log::warning('Changes: ' .$item);
         dd($item);
 
         $id = $item->id;
@@ -177,167 +177,144 @@ class CartCtrl extends Controller
         $price = 0;
         $price += (double)$size_price;
 
-        $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
 
 
-        if($prod->user_id != 0){
-        $gs = Generalsetting::findOrFail(1);
-        $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
-        $prod->price = round($prc,2);
+        if ($prod->user_id != 0) {
+            $gs = Generalsetting::findOrFail(1);
+            $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
+            $prod->price = round($prc, 2);
         }
 
-        if(!empty($prod->license_qty))
-        {
-        $lcheck = 1;
-            foreach($prod->license_qty as $ttl => $dtl)
-            {
-                if($dtl < 1)
-                {
+        if (!empty($prod->license_qty)) {
+            $lcheck = 1;
+            foreach ($prod->license_qty as $ttl => $dtl) {
+                if ($dtl < 1) {
                     $lcheck = 0;
-                }
-                else
-                {
+                } else {
                     $lcheck = 1;
                     break;
-                }                    
-            }
-                if($lcheck == 0)
-                {
-                    return 0;            
                 }
+            }
+            if ($lcheck == 0) {
+                return 0;
+            }
         }
-        if(empty($size))
-        {
-            if(!empty($prod->size))
-            { 
-            $size = $prod->size[0];
-            }          
+        if (empty($size)) {
+            if (!empty($prod->size)) {
+                $size = $prod->size[0];
+            }
         }
  
 
 
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->addnum($prod, $prod->id, $qty, $size,$color,$size_qty,$size_price,$size_key);
-        if($cart->items[$id.$size]['dp'] == 1)
-        {
+        $cart->addnum($prod, $prod->id, $qty, $size, $color, $size_qty, $size_price, $size_key);
+        if ($cart->items[$id.$size]['dp'] == 1) {
             return 'digital';
         }
-        if($cart->items[$id.$size]['stock'] < 0)
-        {
+        if ($cart->items[$id.$size]['stock'] < 0) {
             return 0;
         }
-        if(!empty($cart->items[$id.$size]['size_qty']))
-        {
-            if($cart->items[$id.$size]['qty'] > $cart->items[$id.$size]['size_qty'])
-            {
+        if (!empty($cart->items[$id.$size]['size_qty'])) {
+            if ($cart->items[$id.$size]['qty'] > $cart->items[$id.$size]['size_qty']) {
                 return 0;
-            }           
+            }
         }
 
         $cart->totalPrice = 0;
-        foreach($cart->items as $data)
-        $cart->totalPrice += $data['price'];        
-        Session::put('cart',$cart);
-        $data[0] = count($cart->items);   
+        foreach ($cart->items as $data) {
+            $cart->totalPrice += $data['price'];
+        }
+        Session::put('cart', $cart);
+        $data[0] = count($cart->items);
         return response()->json($data);
-
     }
 
-    public function addbyone(Request $request, $increment)
-    {   
-
-        if ($request->session()->has('coupon')) {
-            $request->session()->forget('coupon');
+    public function addbyone(Request $request)
+    {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
         }
-
         $gs = Generalsetting::findOrFail(1);
-        
-        if ($request->session()->has('currency')) {
-            $curr = Currency::find($request->session()->get('currency'));
+        if (Session::has('currency')) {
+            $curr = Currency::find(Session::get('currency'));
         } else {
             $curr = Currency::where('is_default', '=', 1)->first();
         }
 
-        $id = $increment->item->id;
-        $itemid = $increment->item->id;
-        $size_qty =  $increment->item->size_qty;
-        $size_price =  $increment->item->size_price;
-        
-        $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+        $input = $request->input('item');
 
-        if($prod->user_id != 0){
-        $gs = Generalsetting::findOrFail(1);
-        $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
-        $prod->price = round($prc,2);
+        $id = $input['id'];
+        $itemid = $input['id'];
+        $size_qty = $input['size_qty'];
+        $size_price = $input['size_price'];
+        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+
+        if ($prod->user_id != 0) {
+            $gs = Generalsetting::findOrFail(1);
+            $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
+            $prod->price = round($prc, 2);
         }
-
-        if(!empty($prod->license_qty))
-        {
-        $lcheck = 1;
-            foreach($prod->license_qty as $ttl => $dtl)
-            {
-                if($dtl < 1)
-                {
+    
+        if (!empty($prod->license_qty)) {
+            $lcheck = 1;
+            foreach ($prod->license_qty as $ttl => $dtl) {
+                if ($dtl < 1) {
                     $lcheck = 0;
-                }
-                else
-                {
+                } else {
                     $lcheck = 1;
                     break;
                 }
             }
-                if($lcheck == 0)
-                {
-                    return 0;
-                }
+            if ($lcheck == 0) {
+                return 0;
+            }
         }
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->adding($prod, $itemid,$size_qty,$size_price);
-        if($cart->items[$itemid]['stock'] < 0)
-        {
+        $cart->adding($prod, $itemid, $size_qty, $size_price);
+        if ($cart->items[$itemid]['stock'] < 0) {
             return 0;
         }
-        if(!empty($size_qty))
-        {
-            if($cart->items[$itemid]['qty'] > $cart->items[$itemid]['size_qty'])
-            {
+        if (!empty($size_qty)) {
+            if ($cart->items[$itemid]['qty'] > $cart->items[$itemid]['size_qty']) {
                 return 0;
             }
         }
         $cart->totalPrice = 0;
-        foreach($cart->items as $data)
-        $cart->totalPrice += $data['price'];
-        Session::put('cart',$cart);
+        foreach ($cart->items as $data) {
+            $cart->totalPrice += $data['price'];
+        }
+        Session::put('cart', $cart);
         $data[0] = $cart->totalPrice;
-
+    
         $data[3] = $data[0];
         $tx = $gs->tax;
-        if($tx != 0)
-        {
+        if ($tx != 0) {
             $tax = ($data[0] / 100) * $tx;
             $data[3] = $data[0] + $tax;
         }
-
+    
         $data[1] = $cart->items[$itemid]['qty'];
         $data[2] = $cart->items[$itemid]['price'];
-        $data[0] = round($data[0] * $curr->value,2);
-        $data[2] = round($data[2] * $curr->value,2);
-        if($gs->currency_format == 0){
+        $data[0] = round($data[0] * $curr->value, 2);
+        $data[2] = round($data[2] * $curr->value, 2);
+        if ($gs->currency_format == 0) {
             $data[0] = $curr->sign.$data[0];
             $data[2] = $curr->sign.$data[2];
             $data[3] = $curr->sign.$data[3];
-        }
-        else{
+        } else {
             $data[0] = $data[0].$curr->sign;
             $data[2] = $data[2].$curr->sign;
             $data[3] = $data[3].$curr->sign;
         }
+
         return response()->json($data);
     }
 
-    public function reducebyone(Request $request, $decrement)
+    public function reducebyone(Request $request)
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
@@ -345,80 +322,72 @@ class CartCtrl extends Controller
         
         $gs = Generalsetting::findOrFail(1);
 
-        if (Session::has('currency')) 
-        {
+        if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
-        }
-        else
-        {
-            $curr = Currency::where('is_default','=',1)->first();
+        } else {
+            $curr = Currency::where('is_default', '=', 1)->first();
         }
 
-        $id = $increment->item->id;
-        $itemid = $increment->item->id;
-        $size_qty =  $increment->item->size_qty;
-        $size_price =  $increment->item->size_price;
+        $input = $request->input('item');
 
-        $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
-        if($prod->user_id != 0){
-        $gs = Generalsetting::findOrFail(1);
-        $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
-        $prod->price = round($prc,2);
+        $id = $input['id'];
+        $itemid = $input['id'];
+        $size_qty = $input['size_qty'];
+        $size_price = $input['size_price'];
+
+        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+        if ($prod->user_id != 0) {
+            $gs = Generalsetting::findOrFail(1);
+            $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
+            $prod->price = round($prc, 2);
         }
 
         
-        if(!empty($prod->license_qty))
-        {
-        $lcheck = 1;
-            foreach($prod->license_qty as $ttl => $dtl)
-            {
-                if($dtl < 1)
-                {
+        if (!empty($prod->license_qty)) {
+            $lcheck = 1;
+            foreach ($prod->license_qty as $ttl => $dtl) {
+                if ($dtl < 1) {
                     $lcheck = 0;
-                }
-                else
-                {
+                } else {
                     $lcheck = 1;
                     break;
-                }                    
-            }
-                if($lcheck == 0)
-                {
-                    return 0;            
                 }
+            }
+            if ($lcheck == 0) {
+                return 0;
+            }
         }
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->reducing($prod, $itemid,$size_qty,$size_price);
+        $cart->reducing($prod, $itemid, $size_qty, $size_price);
         $cart->totalPrice = 0;
-        foreach($cart->items as $data)
-        $cart->totalPrice += $data['price'];    
+        foreach ($cart->items as $data) {
+            $cart->totalPrice += $data['price'];
+        }
         
-        Session::put('cart',$cart);
+        Session::put('cart', $cart);
         $data[0] = $cart->totalPrice;
 
         $data[3] = $data[0];
         $tx = $gs->tax;
-        if($tx != 0)
-        {
+        if ($tx != 0) {
             $tax = ($data[0] / 100) * $tx;
             $data[3] = $data[0] + $tax;
-        }  
+        }
 
-        $data[1] = $cart->items[$itemid]['qty']; 
+        $data[1] = $cart->items[$itemid]['qty'];
         $data[2] = $cart->items[$itemid]['price'];
-        $data[0] = round($data[0] * $curr->value,2);
-        $data[2] = round($data[2] * $curr->value,2);
-        if($gs->currency_format == 0){
+        $data[0] = round($data[0] * $curr->value, 2);
+        $data[2] = round($data[2] * $curr->value, 2);
+        if ($gs->currency_format == 0) {
             $data[0] = $curr->sign.$data[0];
             $data[2] = $curr->sign.$data[2];
             $data[3] = $curr->sign.$data[3];
-        }
-        else{
+        } else {
             $data[0] = $data[0].$curr->sign;
             $data[2] = $data[2].$curr->sign;
             $data[3] = $data[3].$curr->sign;
-        }       
+        }
         
         return response()->json($data);
     }
