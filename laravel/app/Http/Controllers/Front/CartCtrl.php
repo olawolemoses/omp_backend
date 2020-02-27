@@ -164,72 +164,80 @@ class CartCtrl extends Controller
 
     public function addnumcart(Request $request)
     {
-        Log::warning('Changes: ' .$item);
-        dd($item);
-
-        $id = $item->id;
-        $qty =  $item->qty;
-        $size =  $item->size;
-        $color =  $item->color;
-        $size_qty =  $item->size_qty;
-        $size_qty =  $item->size_key;
-        $size_price =  $item->size_price;
+        # code...
+        $id = $request['id'];
+        $qty = $request['qty'];
+        $size = $request['size'];
+        $color = $request['color'];
+        $size_qty = $request['size_qty'];
+        $size_price = $request['size_price'];
+        $size_key = $request['size_key'];
         $price = 0;
         $price += (double)$size_price;
+        $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
 
-        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
 
-
-        if ($prod->user_id != 0) {
-            $gs = Generalsetting::findOrFail(1);
-            $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
-            $prod->price = round($prc, 2);
+        if($prod->user_id != 0){
+        $gs = Generalsetting::findOrFail(1);
+        $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission ;
+        $prod->price = round($prc,2);
         }
 
-        if (!empty($prod->license_qty)) {
-            $lcheck = 1;
-            foreach ($prod->license_qty as $ttl => $dtl) {
-                if ($dtl < 1) {
+        if(!empty($prod->license_qty))
+        {
+        $lcheck = 1;
+            foreach($prod->license_qty as $ttl => $dtl)
+            {
+                if($dtl < 1)
+                {
                     $lcheck = 0;
-                } else {
+                }
+                else
+                {
                     $lcheck = 1;
                     break;
+                }                    
+            }
+                if($lcheck == 0)
+                {
+                    return 0;            
                 }
-            }
-            if ($lcheck == 0) {
-                return 0;
-            }
         }
-        if (empty($size)) {
-            if (!empty($prod->size)) {
-                $size = $prod->size[0];
-            }
+        if(empty($size))
+        {
+            if(!empty($prod->size))
+            { 
+            $size = $prod->size[0];
+            }          
         }
  
 
 
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->addnum($prod, $prod->id, $qty, $size, $color, $size_qty, $size_price, $size_key);
-        if ($cart->items[$id.$size]['dp'] == 1) {
+        $cart->addnum($prod, $prod->id, $qty, $size,$color,$size_qty,$size_price,$size_key);
+        if($cart->items[$id.$size]['dp'] == 1)
+        {
             return 'digital';
         }
-        if ($cart->items[$id.$size]['stock'] < 0) {
+        if($cart->items[$id.$size]['stock'] < 0)
+        {
             return 0;
         }
-        if (!empty($cart->items[$id.$size]['size_qty'])) {
-            if ($cart->items[$id.$size]['qty'] > $cart->items[$id.$size]['size_qty']) {
+        if(!empty($cart->items[$id.$size]['size_qty']))
+        {
+            if($cart->items[$id.$size]['qty'] > $cart->items[$id.$size]['size_qty'])
+            {
                 return 0;
-            }
+            }           
         }
 
         $cart->totalPrice = 0;
-        foreach ($cart->items as $data) {
-            $cart->totalPrice += $data['price'];
-        }
-        Session::put('cart', $cart);
-        $data[0] = count($cart->items);
-        return response()->json($data);
+        foreach($cart->items as $data)
+        $cart->totalPrice += $data['price'];        
+        Session::put('cart',$cart);
+        $data[0] = count($cart->items);   
+        return response()->json($data); 
     }
 
     public function addbyone(Request $request)

@@ -136,17 +136,17 @@
       // $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->take(8)->get();
       $feature_products =  Product::with(['ratings' => function ($query) {
           $query->avg('rating');
-        }])->where('featured','=',1)->where('status','=',1)->take(8)->latest()->get();
+        }])->where('featured','=',1)->where('status','=',1)->take(8)->latest('created_at')->get();
       $best_products = Product::with(['ratings' => function ($query) {
           $query->avg('rating');
-        }])->where('best','=',1)->where('status','=',1)->take(3)->latest()->get(); 
+        }])->where('best','=',1)->where('status','=',1)->take(3)->latest('created_at')->get(); 
       // $top_products = Product::where('top','=',1)->where('status','=',1)->take(8)->get();
       // $big_products = Product::where('big','=',1)->where('status','=',1)->take(6)->get();
       // $hot_products =  Product::where('hot','=',1)->where('status','=',1)->take(9)->get();
       // $latest_products =  Product::where('latest','=',1)->where('status','=',1)->take(9)->get();
       $trending_products =  Product::with(['ratings' => function ($query) {
             $query->avg('rating');
-        }])->where('trending','=',1)->where('status','=',1)->take(9)->latest()->get();
+        }])->where('trending','=',1)->where('status','=',1)->take(9)->latest('created_at')->get();
       // $sale_products =  Product::where('sale','=',1)->where('status','=',1)->take(9)->get();
 
       return response()->json([

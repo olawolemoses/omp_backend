@@ -25,7 +25,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
     // Route::post('/password/forgot', 'Auth\ForgotPasswordCtrl@requestEmail');
-    // // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
+    // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
     // Route::post('/password/change', 'Auth\ChangePasswordCtrl');
 
     // CATEGORY SECTION
