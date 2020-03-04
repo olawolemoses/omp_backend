@@ -24,6 +24,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
 
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
+    Route::get('/search/{name}', 'Front\SearchCtrl@search');
     // Route::post('/password/forgot', 'Auth\ForgotPasswordCtrl@requestEmail');
     // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
     // Route::post('/password/change', 'Auth\ChangePasswordCtrl');
