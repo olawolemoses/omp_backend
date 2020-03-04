@@ -20,7 +20,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
         \Barryvdh\Cors\HandleCors::class,
-        
     ];
 
     /**
@@ -40,11 +39,14 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \Illuminate\Session\Middleware\StartSession::class,
             \Barryvdh\Cors\HandleCors::class,
             'throttle:60,1',
             'bindings',
         ],
+
+        'sessions' => [
+            \Illuminate\Session\Middleware\StartSession::class,
+        ]
     ];
 
     /**

@@ -16,14 +16,20 @@
   use App\Models\Product;
   use App\Models\User;
   use App\Models\UserNotification;
+  use Illuminate\Http\Request;
   use App\Models\VendorOrder;
   use Auth;
-  use Illuminate\Http\Request;
   use Session;
+  use Log;
+
 
   class PaystackCtrl extends Controller
-  {
+  { 
+
     public function store(Request $request) {
+
+        Log::info('I have access: ' .$request);
+
         if ($request->pass_check) {
             $users = User::where('email', '=', $request->personal_email)->get();
             if (count($users) == 0) {
@@ -51,22 +57,17 @@
             }
         }
         
-        if (!Session::has('cart')) {
-
-          return response()->json([
-            'success' => true,
-            'msg' => 'You don\'t have any product to checkout.'
-          ], 201);
-        }
         if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
         } else {
             $curr = Currency::where('is_default', '=', 1)->first();
         }
+
         $gs = Generalsetting::findOrFail(1);
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        foreach ($cart->items as $key => $prod) {
+
+        $items = $request['items'];
+        
+        foreach ($items as $key => $prod) {
             if (!empty($prod['item']['license']) && !empty($prod['item']['license_qty'])) {
                 foreach ($prod['item']['license_qty']as $ttl => $dtl) {
                     if ($dtl != 0) {
@@ -89,46 +90,46 @@
             }
         }
         $order = new Order;
-        $success_url = action('Front\PaymentController@payreturn');
+        // $success_url = action('Front\PaymentController@payreturn');
         $item_name = $gs->title." Order";
         $item_number = str_random(4).time();
-        $order['user_id'] = $request->user_id;
-        $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
-        $order['total_quantity'] = $request->total_quantity;
-        $order['pay_amount'] = round($request->total / $curr->value, 2)  + $request->shipping_cost + $request->packing_cost;
+        $order['user_id'] = $request['user_id'];
+        $order['cart'] = utf8_encode(bzcompress(serialize($items), 9));
+        $order['total_quantity'] = $request['total_quantity'];
+        $order['pay_amount'] = round($request['total'] / $curr->value, 2)  + $request['shipping_cost'] + $request['packing_cost'];
         $order['method'] = $request->method;
-        $order['shipping'] = $request->shipping;
-        $order['pickup_location'] = $request->pickup_location;
-        $order['customer_email'] = $request->email;
-        $order['customer_name'] = $request->name;
-        $order['shipping_cost'] = $request->shipping_cost;
-        $order['packing_cost'] = $request->packing_cost;
-        $order['tax'] = $request->tax;
-        $order['customer_phone'] = $request->phone;
+        $order['shipping'] = $request['billing']['shipping_method'];
+        // $order['pickup_location'] = $request->pickup_location;
+        $order['customer_email'] = $request['billing']['email'];
+        $order['customer_name'] = $request['billing']['name'];
+        $order['shipping_cost'] = $request['shipping_cost'];
+        $order['packing_cost'] = $request['packing_cost'];
+        $order['tax'] = $request['tax'];
+        $order['customer_phone'] = $request['billing']['phone'];
         $order['order_number'] = str_random(4).time();
-        $order['customer_address'] = $request->address;
-        $order['customer_country'] = $request->customer_country;
-        $order['customer_city'] = $request->city;
-        $order['customer_zip'] = $request->zip;
-        $order['shipping_email'] = $request->shipping_email;
-        $order['shipping_name'] = $request->shipping_name;
-        $order['shipping_phone'] = $request->shipping_phone;
-        $order['shipping_address'] = $request->shipping_address;
-        $order['shipping_country'] = $request->shipping_country;
-        $order['shipping_city'] = $request->shipping_city;
-        $order['shipping_zip'] = $request->shipping_zip;
-        $order['order_note'] = $request->order_notes;
-        $order['coupon_code'] = $request->coupon_code;
-        $order['coupon_discount'] = $request->coupon_discount;
+        $order['customer_address'] = $request['billing']['address'];
+        $order['customer_country'] = $request['billing']['country'];
+        $order['customer_city'] = $request['billing']['city'];
+        $order['customer_zip'] = $request['billing']['zip'];
+        $order['shipping_email'] = $request['shipping']['s_email'];
+        $order['shipping_name'] = $request['shipping']['s_name'];
+        $order['shipping_phone'] = $request['shipping']['s_phone'];
+        $order['shipping_address'] = $request['shipping']['s_address'];
+        $order['shipping_country'] = $request['shipping']['s_country'];
+        $order['shipping_city'] = $request['shipping']['s_city'];
+        $order['shipping_zip'] = $request['shipping']['s_zip'];
+        $order['order_note'] = $request['shipping']['s_notes'];
+        // $order['coupon_code'] = $request->coupon_code;
+        // $order['coupon_discount'] = $request->coupon_discount;
         $order['dp'] = $request->dp;
         $order['payment_status'] = "Pending";
         $order['currency_sign'] = $curr->sign;
         $order['currency_value'] = $curr->value;
         $order['payment_status'] = "Completed";
-        $order['txnid'] = $request->ref_id;
+        // $order['txnid'] = $request->ref_id;
         $order['dp'] = $request->dp;
-        $order['vendor_shipping_id'] = $request->vendor_shipping_id;
-        $order['vendor_packing_id'] = $request->vendor_packing_id;
+        // $order['vendor_shipping_id'] = $request->vendor_shipping_id;
+        // $order['vendor_packing_id'] = $request->vendor_packing_id;
         
         if ($order['dp'] == 1) {
             $order['status'] = 'completed';
@@ -143,6 +144,7 @@
             $order['affilate_user'] = $user->name;
             $order['affilate_charge'] = $sub;
         }
+        // dd($order);
         $order->save();
 
         if ($order->dp == 1) {
@@ -173,13 +175,13 @@
             $coupon->update();
         }
 
-        foreach ($cart->items as $prod) {
+        foreach ($items as $prod) {
             $x = (string)$prod['size_qty'];
             if (!empty($x)) {
                 $product = Product::findOrFail($prod['item']['id']);
                 $x = (int)$x;
                 $x = $x - $prod['qty'];
-                $temp = $product->size_qty;
+                $temp = (array)  $product->size_qty;
                 $temp[$prod['size_key']] = $x;
                 $temp1 = implode(',', $temp);
                 $product->size_qty =  $temp1;
@@ -187,7 +189,7 @@
             }
         }
 
-        foreach ($cart->items as $prod) {
+        foreach ($items as $prod) {
             $x = (string)$prod['stock'];
             if ($x != null) {
                 $product = Product::findOrFail($prod['item']['id']);
@@ -203,7 +205,7 @@
 
         $notf = null;
 
-        foreach ($cart->items as $prod) {
+        foreach ($items as $prod) {
             if ($prod['item']['user_id'] != 0) {
                 $vorder =  new VendorOrder;
                 $vorder->order_id = $order->id;
@@ -227,7 +229,7 @@
         }
 
         Session::put('temporder', $order);
-        Session::put('tempcart', $cart);
+        Session::put('tempcart', $items);
 
         Session::forget('cart');
 
@@ -241,15 +243,15 @@
 
         if ($gs->is_smtp == 1) {
             $data = [
-            'to' => $request->email,
-            'type' => "new_order",
-            'cname' => $request->name,
-            'oamount' => "",
-            'aname' => "",
-            'aemail' => "",
-            'wtitle' => "",
-            'onumber' => $order->order_number,
-        ];
+                'to' => $request->email,
+                'type' => "new_order",
+                'cname' => $request->name,
+                'oamount' => "",
+                'aname' => "",
+                'aemail' => "",
+                'wtitle' => "",
+                'onumber' => $order->order_number,
+            ];
 
             $mailer = new GeniusMailer();
             $mailer->sendAutoOrderMail($data, $order->id);
@@ -277,7 +279,5 @@
             $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
             mail($to, $subject, $msg, $headers);
         }
-
-        return redirect($success_url);
     }
   }

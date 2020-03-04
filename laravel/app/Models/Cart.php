@@ -14,9 +14,7 @@
       public $totalPrice = 0;
     
       public function __construct($oldcart)
-      {
-          Log::info('Asses old: ' . $oldcart);
-        
+      {        
           if ($oldcart) {
               $this->items = $oldCart->items;
               $this->total_quantity = $oldCart->total_quantity;

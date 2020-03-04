@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::group(['prefix' => 'v1'], function(){
+Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
 
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
@@ -100,7 +100,7 @@ Route::group(['prefix' => 'v1'], function(){
 
 });
 
-Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function ()  {
+Route::group(['middleware' => ['jwt.verify', 'sessions'],  'prefix' => 'v1/user'], function ()  {
 
     // User Profile
     Route::get('/profile', 'User\UserCtrl@index');
@@ -112,6 +112,8 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
     Route::get('/wishlist/add/{id}','User\WishlistCtrl@addwish');
     Route::get('/wishlist/remove/{id}','User\WishlistCtrl@removewish');
     // User Wishlist Ends
+
+    Route::post('/paystack/submit', 'Front\PaystackController@store');
 
     // User Orders
     Route::get('/orders', 'User\OrderCtrl@orders');
@@ -130,14 +132,13 @@ Route::group(['middleware' => ['jwt.verify'],  'prefix' => 'v1/user'], function 
 });
 
 //..............Message Section.........
-Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/message'], function ()  {
+Route::group(['middleware' => ['jwt.verify', 'sessions'], 'prefix' => 'v1/message'], function ()  {
 
-Route::get('/{id}', 'Vendor\MessagesCtrl@messageshow');
-Route::get('/recieved/{recieved_user}', 'Vendor\MessagesCtrl@recievedmsg');
-Route::get('/sent/{sent_user}', 'Vendor\MessagesCtrl@sentmessage');
-Route::delete('/delete/{id}', 'Vendor\MessagesCtrl@messagedelete');
-Route::post('/', 'Vendor\MessagesCtrl@postmessage');
-
+    Route::get('/{id}', 'Vendor\MessagesCtrl@messageshow');
+    Route::get('/recieved/{recieved_user}', 'Vendor\MessagesCtrl@recievedmsg');
+    Route::get('/sent/{sent_user}', 'Vendor\MessagesCtrl@sentmessage');
+    Route::delete('/delete/{id}', 'Vendor\MessagesCtrl@messagedelete');
+    Route::post('/', 'Vendor\MessagesCtrl@postmessage');
 
 });
 
