@@ -210,8 +210,9 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
 
     //Order
     Route::get('/orders/{user_id}','Vendor\OrderCtrl@index');
-
-
+    Route::get('/pendingorder/{user_id}','Vendor\OrderCtrl@pending');
+    Route::get('/completedorder/{user_id}','Vendor\OrderCtrl@complete');
+    Route::get('order/all/{id}','Admin\OrderCtrls@view');
 });
 
 //admin

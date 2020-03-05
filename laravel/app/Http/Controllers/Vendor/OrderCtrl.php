@@ -40,6 +40,57 @@
           }
       }
 
+      public function pending(Request $request, $user_id){
+        $userOrder = Order::where('user_id', $user_id)->where('status', '=', 'pending')->orderBy('status', 'desc')->get()->groupBy('status');
+          if($userOrder){
+
+            return response()->json([
+              'status' => true,
+              'data' => $userOrder
+            ], 201);
+          }
+          else{
+            return response()->json([
+              'status' => false,
+              'message' => 'No pending order'
+            ], 201);
+          }
+
+         
+      }
+    
+      public function complete(Request $request, $user_id) {
+         
+        $orders = Order::where('user_id', $user_id)->where('status', '=', 'completed')->orderBy('status', 'desc')->get()->groupBy('status');
+
+        return response()->json([
+          'status' => true,
+          'data' => $orders
+        ], 201);
+    }
+
+    public function view(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+
+        if(!$order){
+            return response() ->json([
+                'status' =>false,
+                'data' => 'orders could not be found'
+            ]);
+        }
+
+
+        return response() ->json([
+            'status' =>true,
+            'data' => [
+                'order' =>$order
+            ],
+        ], 200);
+    }
+
+
+
 
 
       public function show($slug) {
