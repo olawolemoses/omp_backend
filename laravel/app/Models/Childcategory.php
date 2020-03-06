@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Childcategory extends Model
 {
-  
+  protected $table = 'childcategories';
+
+
   protected $fillable = ['subcategory_id','name','slug'];
   public $timestamps = false;
 

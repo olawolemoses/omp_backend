@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
+Route::group(['prefix' => 'v1'], function(){
 
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
@@ -34,6 +34,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
     Route::get('/category/{slug1}/{slug2}','Front\CatalogCtrl@subcategory');
     Route::get('/category/{slug1}/{slug2}/{slug3}','Front\CatalogCtrl@childcategory');
     Route::get('/categories','Front\CatalogCtrl@categories');
+    Route::get('/allcategories','Front\CatalogCtrl@getcategories');
     // CATEGORY SECTION ENDS
 
     // CART SECTION
@@ -93,6 +94,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
 
     // TAG SECTION
     Route::get('/search/','Front\CatalogCtrl@search');
+    Route::get('/categorysearch/','Front\CatalogCtrl@categorysearch');
     // TAG SECTION ENDS
 
     // PAGE SECTION

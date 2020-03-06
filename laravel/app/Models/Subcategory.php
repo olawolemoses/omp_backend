@@ -12,8 +12,11 @@
     protected $table = 'subcategories';
 
     public function childs() {
-    	return $this->hasMany('App\Models\Childcategory')->where('status','=',1);
+    	return $this->hasMany('App\Models\Childcategory',  "subcategory_id" )->where('status','=',1);
     }
+
+    
+
 
     public function category() {
     	return $this->belongsTo('App\Models\Category');

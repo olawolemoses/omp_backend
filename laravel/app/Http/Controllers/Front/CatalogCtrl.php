@@ -28,7 +28,7 @@ class CatalogCtrl extends Controller {
     // -------------------------------- CATEGORY SECTION ----------------------------------------
     public function categories(Request $request) {
 
-        $cats = Category::all();
+        $cats = Category::where('status','=',1)->get();
 
         return response() -> json([
             'success' => true,
@@ -37,9 +37,164 @@ class CatalogCtrl extends Controller {
 
     }
 
+    public function getcategories(Request $request) {
+        # code...
+        $categories = Category::where('status','=',1)->get();
+
+        $categoryArray = [];
+        foreach ($categories as $category) {
+            $catArr = ["name" => $category->name];
+
+            if (count($category->subs) > 0) {
+                $subCategory = [];
+                foreach ($category->subs as $subcat) {
+
+                    $subCatArr = ["name" => $subcat->name];
+
+                    if (count($subcat->childs) > 0) {
+                        $childCats = [];
+                        foreach ($subcat->childs as $childcat) 
+                        {
+                            $childCats[] = ["name" => $childcat->name];
+                        }
+                        $subCatArr["childCats"] = $childCats;
+                    }                    
+                    $subCategory[] = $subCatArr;
+                }
+                $catArr["subCats"] = $subCategory;
+
+            }
+            $categoryArray[$category->name] = $catArr;
+        } 
+
+        return response() -> json([
+            'success' => true,
+            'data' => $categoryArray
+        ], 201);
+       
+    }
+
+    public function categorysearch(Request $request, $slug=null, $slug1=null, $slug2=null)
+    {
+        $cat = null;
+        $subcat = null;
+        $childcat = null;
+        $minprice = $request->min;
+        $maxprice = $request->max;
+        $sort = $request->sort;
+        $search = $request->search;
+        $slug = $request->input('slug', null);
+        $slug1 = $request->input('slug1', null);
+
+        $data = [];
+        if (!empty($slug)) {
+            $cat = Category::where('slug', $slug)->firstOrFail();
+            $data['cat'] = $cat;
+        }
+        
+        if (!empty($slug1)) {
+            $subcat = Subcategory::where('slug', $slug1)->firstOrFail();
+            $data['subcat'] = $subcat;
+        }
+
+        $prods = Product::when($cat, function ($query, $cat) {
+            return $query->where('category_id', $cat->id);
+        })
+        ->when($subcat, function ($query, $subcat) {
+            return $query->where('subcategory_id', $subcat->id);
+        })
+        ->when($childcat, function ($query, $childcat) {
+            return $query->where('childcategory_id', $childcat->id);
+        })
+        ->when($search, function ($query, $search) {
+            return $query->whereRaw('MATCH (name) AGAINST (? IN BOOLEAN MODE)', array($search));
+        })
+        ->when($minprice, function ($query, $minprice) {
+            return $query->where('price', '>=', $minprice);
+        })
+        ->when($maxprice, function ($query, $maxprice) {
+            return $query->where('price', '<=', $maxprice);
+        })
+        ->when($sort, function ($query, $sort) {
+            if ($sort=='date_desc') {
+                return $query->orderBy('id', 'DESC');
+            } elseif ($sort=='date_asc') {
+                return $query->orderBy('id', 'ASC');
+            } elseif ($sort=='price_desc') {
+                return $query->orderBy('price', 'DESC');
+            } elseif ($sort=='price_asc') {
+                return $query->orderBy('price', 'ASC');
+            }
+        })
+        ->when(empty($sort), function ($query, $sort) {
+            return $query->orderBy('id', 'DESC');
+        });
+
+        $prods = $prods->where(function ($query) use ($cat, $subcat, $childcat, $request) {
+            $flag = 0;
+
+            if (!empty($cat)) {
+                foreach ($cat->attributes as $key => $attribute) {
+                    $inname = $attribute->input_name;
+                    $chFilters = $request["$inname"];
+                    if (!empty($chFilters)) {
+                        $flag = 1;
+                        foreach ($chFilters as $key => $chFilter) {
+                            if ($key == 0) {
+                                $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            } else {
+                                $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!empty($subcat)) {
+                foreach ($subcat->attributes as $attribute) {
+                    $inname = $attribute->input_name;
+                    $chFilters = $request["$inname"];
+                    if (!empty($chFilters)) {
+                        $flag = 1;
+                        foreach ($chFilters as $key => $chFilter) {
+                            if ($key == 0 && $flag == 0) {
+                                $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            } else {
+                                $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!empty($childcat)) {
+                foreach ($childcat->attributes as $attribute) {
+                    $inname = $attribute->input_name;
+                    $chFilters = $request["$inname"];
+                    if (!empty($chFilters)) {
+                        $flag = 1;
+                        foreach ($chFilters as $key => $chFilter) {
+                            if ($key == 0 && $flag == 0) {
+                                $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            } else {
+                                $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        $prods = $prods->where('status', 1)->get();
+
+        return response() -> json([
+            'success' => true,
+            'data' => compact('search', 'slug', 'slug2', 'data', 'prods')
+        ], 201);
+    }
+
     public function category(Request $request, $slug) {
 
-        $this->code_image();
         $sort = "";
         $cat = Category::where('slug', '=', $slug) -> first();
         $oldcats = $cat -> products() -> where('status', '=', 1) -> orderBy('id', 'desc') -> get();
@@ -417,7 +572,6 @@ class CatalogCtrl extends Controller {
                 ], 201);
 
             }
-
 
             // *********************** NORMAL SEARCH SECTION ENDS ******************
 
