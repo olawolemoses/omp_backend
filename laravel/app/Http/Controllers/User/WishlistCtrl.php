@@ -89,4 +89,28 @@
       ], 201);
     }
 
+    //fetch all product
+    public function show(Request $request, $user_id )
+    {
+        $product = Wishlist::where('user_id', $user_id)->get();
+        
+
+        if(!$product){
+            return response() ->json([
+                'status' =>false,
+                'message' => 'product could not be found',
+             
+            ]);
+        }
+        else{
+            return response() ->json([
+                'status' =>true,
+                'data' => [
+                    'product' =>$product
+                   
+                ],
+            ], 200);
+        }
+    }
+
   }

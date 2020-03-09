@@ -157,6 +157,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::put('/update/{id}', 'Vendor\SignupCtrl@updated');
     Route::put('/password/{id}', 'Vendor\SignupCtrl@password');
     Route::post('/check/{id}', 'Vendor\SignupCtrl@checkpassword');
+    Route::get('/wishlists/{user_id}','User\WishlistCtrl@show');
 
 
     // Order Notification
