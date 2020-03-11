@@ -114,6 +114,7 @@ Route::group(['middleware' => ['jwt.verify', 'sessions'],  'prefix' => 'v1/user'
     Route::get('/wishlists','User\WishlistCtrl@wishlists');
     Route::get('/wishlist/add/{id}','User\WishlistCtrl@addwish');
     Route::get('/wishlist/remove/{id}','User\WishlistCtrl@removewish');
+
     // User Wishlist Ends
 
     Route::post('/paystack/submit', 'Front\PaystackController@store');
@@ -157,7 +158,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::put('/update/{id}', 'Vendor\SignupCtrl@updated');
     Route::put('/password/{id}', 'Vendor\SignupCtrl@password');
     Route::post('/check/{id}', 'Vendor\SignupCtrl@checkpassword');
-    Route::get('/wishlists/{user_id}','User\WishlistCtrl@show');
+    Route::get('/wishlists/{id}','User\WishlistCtrl@show');
 
 
     // Order Notification
@@ -203,7 +204,10 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
     Route::put('/product/update/{id}','Vendor\ProductCtrl@edit');
     Route::get('/prod/{user_id}','Vendor\ProductCtrl@prodid');
     Route::get('/product/{id}','Vendor\ProductCtrl@view');
+    Route::get('/deactivated/{id}','Vendor\ProductCtrl@deactivated');
     Route::delete('/product/delete/{id}','Vendor\ProductCtrl@delete');
+    Route::get('/viewdeactivated/{user_id}','Vendor\ProductCtrl@viewdeactivated');
+    Route::get('/activated/{id}','Vendor\ProductCtrl@activated');
 
 
     //Category

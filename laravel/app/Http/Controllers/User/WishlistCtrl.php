@@ -90,9 +90,9 @@
     }
 
     //fetch all product
-    public function show(Request $request, $user_id )
+    public function show(Request $request, $id )
     {
-        $product = Wishlist::where('user_id', $user_id)->get();
+        $product = Wishlist::where('product_id','=',$id)->get();
         
 
         if(!$product){

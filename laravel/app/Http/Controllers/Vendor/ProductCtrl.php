@@ -145,7 +145,7 @@ class ProductCtrl extends Controller
     //fetch all product
     public function show(Request $request)
     {
-        $product = Product::latest()->get();
+        $product = Product::where('status','=',1)->latest()->get();
         
 
         if(!$product){
@@ -169,7 +169,7 @@ class ProductCtrl extends Controller
     //fetch all product
     public function prodid(Request $request, $user_id)
     {
-        $product = Product::where('user_id', $user_id)->latest()->get();
+        $product = Product::where('user_id', $user_id)->where('status','=',1)->latest()->get();
 
         if(!$product){
             return response() ->json([
@@ -271,6 +271,70 @@ class ProductCtrl extends Controller
             ], 200);
         }
     
+    }
+
+    public function deactivated (Request $request,$id){
+        $product = Product::findOrFail($id);
+            if($product)
+            {
+                //set status to 0
+                $product->status= 0;
+                $product->update();
+                return response()->json([
+                    'status'=>true,
+                    'msg'=>'Product deactivated' 
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status'=>false,
+                    'msg'=>'error deactivating product'
+                ]);
+            }
+
+    }
+
+
+    public function viewdeactivated (Request $request,$user_id){
+        $product = Product::where('user_id',$user_id)->where('status','=',0)->latest()->get();
+            if($product){
+                return response()->json([
+                    'status'=>true,
+                    'msg'=>'deactivated products fetched successfully',
+                    'data' => [
+                        'product' =>$product
+                    ],
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status'=>false,
+                    'msg'=>'failed to fetch product'
+                ]);
+            }
+
+    }
+
+
+    public function activated (Request $request,$id){
+        $product = Product::findOrFail($id);
+            if($product)
+            {
+                //set status to 0
+                $product->status = 1;
+                $product->update();
+                return response()->json([
+                    'status'=>true,
+                    'msg'=>'Product activated' 
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status'=>false,
+                    'msg'=>'error deactivating product'
+                ]);
+            }
+
     }
 
    
