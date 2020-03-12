@@ -70,6 +70,17 @@ class ProductCtrl extends Controller
                 $product->photo = $paths;
            
         }
+
+        if($request->hasFile('thumbnail') && $request->file('thumbnail')->isValid()){
+            $cloudder = Cloudder::upload($request->file('thumbnail')->getRealPath());
+
+            $uploadResult = $cloudder->getResult();
+
+            $file_url = $uploadResult["url"];
+            $product->thumbnail = $file_url;
+            
+        }
+
     
         if($request->hasFile('file') && $request->file('file')->isValid()){
             $cloudder = Cloudder::upload($request->file('file')->getRealPath());
