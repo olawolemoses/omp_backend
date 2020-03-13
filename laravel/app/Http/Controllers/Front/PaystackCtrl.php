@@ -95,7 +95,7 @@
         $item_number = str_random(4).time();
         $order['user_id'] = $request['user_id'];
         $order['cart'] = utf8_encode(bzcompress(serialize($items), 9));
-        $order['total_quantity'] = $request['total_quantity'];
+        $order['totalQty'] = $request['total_quantity'];
         $order['pay_amount'] = round($request['total'] / $curr->value, 2)  + $request['shipping_cost'] + $request['packing_cost'];
         $order['method'] = $request->method;
         $order['shipping'] = $request['billing']['shipping_method'];

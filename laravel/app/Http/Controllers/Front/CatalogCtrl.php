@@ -66,11 +66,11 @@ class CatalogCtrl extends Controller {
             }
             $categoryArray[$category->name] = $catArr;
         } 
-
-        return response() -> json([
+    
+        return response()->json([
             'success' => true,
             'data' => $categoryArray
-        ], 201);
+          ], 201);
        
     }
 
@@ -611,9 +611,16 @@ class CatalogCtrl extends Controller {
             $vendors = Product:: where('status', '=', 1) -> where('user_id', '=', 0) -> take(8) -> get();
         }
 
+        //dd( compact('productt', 'curr', 'vendors') );
+        $photos = null;
+
+        if(!empty( $productt->photo )) {
+            $photos = explode(",", $productt->photo);
+        }
+
         return response()->json([
             'success' => true,
-            'data' => compact('productt', 'curr', 'vendors')
+            'data' => compact('productt', 'photos', 'curr', 'vendors')
         ], 201);
 
     }

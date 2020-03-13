@@ -41,9 +41,9 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/carts','Front\CartCtrl@cart');
     Route::get('/addcart/{id}','Front\CartCtrl@addcart');
     Route::get('/addtocart/{id}','Front\CartCtrl@addtocart');
-    Route::post('/addnumcart/','Front\CartCtrl@addnumcart');
-    Route::post('/addbyone/','Front\CartCtrl@addbyone');
-    Route::post('/reducebyone/','Front\CartCtrl@reducebyone');
+    Route::post('/addnumcart','Front\CartCtrl@addnumcart');
+    Route::post('/addbyone','Front\CartCtrl@addbyone');
+    Route::post('/reducebyone','Front\CartCtrl@reducebyone');
     Route::get('/upcolor','Front\CartCtrl@upcolor');
     Route::get('/removecart/{id}','Front\CartCtrl@removecart');
     Route::get('/carts/coupon','Front\CartCtrl@coupon');
@@ -51,7 +51,7 @@ Route::group(['prefix' => 'v1'], function(){
     // CART SECTION ENDS
 
     // CHECKOUT SECTION
-    Route::get('/checkout/','Front\CheckoutCtrl@checkout');
+    Route::get('/checkout','Front\CheckoutCtrl@checkout');
     Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutCtrl@loadpayment');
     Route::get('/order/track/{id}','Front\FrontendCtrl@trackload');
     Route::get('/checkout/payment/return', 'Front\PaymentCtrl@payreturn');

@@ -55,11 +55,12 @@
 
       $user = Auth::user();
       $data[0] = 0;
-      $ck = Wishlist::where('user_id','=',$user->id)->where('product_id','=',$id)->get()->count();
-      if ($ck > 0) {
+      $ck = Wishlist::where('user_id','=',$user->id)->where('product_id','=',$id)->get();
+     
+      if (count($ck) > 0) {
         return response()->json([
           'success' => true,
-          'data' => 'Succesfully Added'
+          'message' => 'Succesfully Added'
         ], 201);
       }
       
@@ -73,6 +74,7 @@
         'success' => true,
         'msg' => 'Successfully Added'
       ], 201); 
+
     }
 
     public function removewish() {

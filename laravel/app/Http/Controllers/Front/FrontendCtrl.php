@@ -109,7 +109,6 @@
       return $os_platform;
     }
 
-
   // -------------------------------- HOME PAGE SECTION ----------------------------------------
 
     public function index(Request $request) {
