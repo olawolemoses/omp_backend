@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use App\Http\Resources\SubcategoryResource;
+
 
 class SubcategoryCtrl extends Controller
 {
@@ -29,23 +31,22 @@ class SubcategoryCtrl extends Controller
 
     public function create(Request $request)
     {
+        // dd($request->all());
         $this->validate($request,[
-            'category_name' => 'required | string',
-            'name' => 'required | string | unique:categories',
-            'slug' => 'required | string',
-            
-            
+            'category_name' => 'required | string | exists:categories,name',
+            'name' => 'required | string | unique:subcategories',
+            'slug' => 'required | string'
         ]);
 
-        $subcategory = new Subcategory();
+        $category = Category::where('name', $request->category_name)->first();
         
-        // $sub = Category::plunk($request->category_name);
 
+        $subcategory = new Subcategory();
         $subcategory ->name = $request->name;
         $subcategory ->slug = $request->slug;
-        $subcategory ->status = 1;
+        $subcategory ->category_id = $category->id;
         $subcategory ->category_name = $request->category_name;
-
+        $subcategory ->status = 1;
         $subcategory->save();
         
 
@@ -69,8 +70,9 @@ class SubcategoryCtrl extends Controller
     //fetch all roles
     public function show(Request $request)
     {
-      
-        $subcategory = Subcategory::latest('id')->get();
+        $subcategory = SubcategoryResource::collection(Subcategory::latest('id')->get());
+
+        // $subcategory = Subcategory::latest('id')->get();
 
         if(!$subcategory)
         {
@@ -89,7 +91,10 @@ class SubcategoryCtrl extends Controller
     }
 
     public function get(Request $request, $category_name){
-        $subcategory = Subcategory::where('category_name', $category_name)->get();
+
+        $category = Category::where('name', $request->category_name)->first();
+
+        $subcategory = Subcategory::where('category_id', $category->id)->get();
 
         if(!$subcategory)
         {
@@ -135,8 +140,6 @@ class SubcategoryCtrl extends Controller
         $subcategory =  Subcategory::findOrFail($id);
         
         if($subcategory->fill($request->all())->save()) {
-
-      
             return response([
                 'status'=>true,
                 'message'=>'subCategory updated successfully',

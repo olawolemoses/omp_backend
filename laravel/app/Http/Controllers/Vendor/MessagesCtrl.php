@@ -75,17 +75,22 @@ class MessagesCtrl extends Controller
     //*** GET Request
     public function messagedelete($id)
     {
-        $conv = Message::findOrfail($id);
-        if($conv->messages->count() > 0)
-         {
-           foreach ($conv->messages as $key) {
-            $key->delete();
-            }
-         }
-          $conv->delete();
-        //--- Redirect Section     
-        $msg = 'Data Deleted Successfully.';
-        return response()->json($msg);      
+        $message =  Message::findOrFail($id);
+        $message->delete();
+
+        if(!$message){
+            return response() ->json([
+                'status' =>false,
+                'message' => 'message could not be deleted'
+            ]);
+        }
+        else{
+
+            return response() ->json([
+                'status' =>true,
+                'message' =>"message deleted successfully"
+            ], 200);
+        };      
         //--- Redirect Section Ends               
     }
 

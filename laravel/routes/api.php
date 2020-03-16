@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,10 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
+Route::group(['prefix' => 'v1'], function(){
 
     Route::post('/login', 'Auth\UserController@authenticate');
     Route::post('/registration', 'Auth\UserController@registration');
+    Route::get('/search/{name}', 'Front\SearchCtrl@search');
     // Route::post('/password/forgot', 'Auth\ForgotPasswordCtrl@requestEmail');
     // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
     // Route::post('/password/change', 'Auth\ChangePasswordCtrl');
@@ -33,15 +33,16 @@ Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
     Route::get('/category/{slug1}/{slug2}','Front\CatalogCtrl@subcategory');
     Route::get('/category/{slug1}/{slug2}/{slug3}','Front\CatalogCtrl@childcategory');
     Route::get('/categories','Front\CatalogCtrl@categories');
+    Route::get('/allcategories','Front\CatalogCtrl@getcategories');
     // CATEGORY SECTION ENDS
 
     // CART SECTION
     Route::get('/carts','Front\CartCtrl@cart');
     Route::get('/addcart/{id}','Front\CartCtrl@addcart');
     Route::get('/addtocart/{id}','Front\CartCtrl@addtocart');
-    Route::post('/addnumcart/','Front\CartCtrl@addnumcart');
-    Route::post('/addbyone/','Front\CartCtrl@addbyone');
-    Route::post('/reducebyone/','Front\CartCtrl@reducebyone');
+    Route::post('/addnumcart','Front\CartCtrl@addnumcart');
+    Route::post('/addbyone','Front\CartCtrl@addbyone');
+    Route::post('/reducebyone','Front\CartCtrl@reducebyone');
     Route::get('/upcolor','Front\CartCtrl@upcolor');
     Route::get('/removecart/{id}','Front\CartCtrl@removecart');
     Route::get('/carts/coupon','Front\CartCtrl@coupon');
@@ -49,7 +50,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['sessions']], function(){
     // CART SECTION ENDS
 
     // CHECKOUT SECTION
-    Route::get('/checkout/','Front\CheckoutCtrl@checkout');
+    Route::get('/checkout','Front\CheckoutCtrl@checkout');
     Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutCtrl@loadpayment');
     Route::get('/order/track/{id}','Front\FrontendCtrl@trackload');
     Route::get('/checkout/payment/return', 'Front\PaymentCtrl@payreturn');
@@ -210,8 +211,9 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
 
     //Order
     Route::get('/orders/{user_id}','Vendor\OrderCtrl@index');
-
-
+    Route::get('/pendingorder/{user_id}','Vendor\OrderCtrl@pending');
+    Route::get('/completedorder/{user_id}','Vendor\OrderCtrl@complete');
+    Route::get('order/all/{id}','Admin\OrderCtrls@view');
 });
 
 //admin
@@ -220,7 +222,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
 Route::post('v1/admin/create','Admin\RegisterCtrl@register');
 Route::post('v1/admin/signup','Admin\LoginCtrl@authenticate');
 
-Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
+Route::group(['prefix' => 'v1/admin'], function () {
     //Roles
     Route::post('role/create','Admin\RoleCtrl@create');
     Route::get('role','Admin\RoleCtrl@show');

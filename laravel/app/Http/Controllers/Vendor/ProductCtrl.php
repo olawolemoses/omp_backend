@@ -236,7 +236,7 @@ class ProductCtrl extends Controller
         $product->delete();
 
         if(!$product){
-            return response() ->json([
+            return response() ->json([  
                 'status' =>false,
                 'message' => 'product could not be deleted'
             ]);

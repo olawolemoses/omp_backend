@@ -15,6 +15,16 @@
     public function orders()  {
       $user = Auth::user();
       $orders = Order::where('user_id', '=', $user->id)->orderBy('id', 'desc')->get();
+
+      
+      
+      $orders->map(function ($order, $key) {
+        $newOrder = $order;
+        $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
+        $newOrder->cart = $cart;
+        return $newOrder;
+      });
+
       return response()->json([
         'success' => true,
         'data' => [ 'order' => compact('user','orders') ]

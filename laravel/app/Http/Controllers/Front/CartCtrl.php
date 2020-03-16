@@ -59,7 +59,7 @@ class CartCtrl extends Controller
 
     public function addtocart(Request $request, $id)
     {
-        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','thumbnail', 'size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
 
         if (!empty($prod->license_qty)) {
             $lcheck = 1;
@@ -110,7 +110,7 @@ class CartCtrl extends Controller
 
     public function addcart(Request $request, $id)
     {
-        $prod = Product::where('id', '=', $id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
+        $prod = Product::where('id', '=', $id)->first(['id','user_id','sku','slug','name','photo','thumbnail','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount']);
 
         if (!empty($prod->license_qty)) {
             $lcheck = 1;
