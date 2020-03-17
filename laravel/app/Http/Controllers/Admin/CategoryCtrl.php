@@ -140,7 +140,7 @@ class CategoryCtrl extends Controller
         
         if($category->fill($request->all())->save()) {
 
-      
+        
             return response([
                 'status'=>true,
                 'message'=>'Category updated successfully',

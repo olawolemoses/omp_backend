@@ -14,6 +14,9 @@ use Validator;
 use Cloudder;
 use Log;
 
+use App\Http\Resources\ProductResource;
+
+
 class ProductCtrl extends Controller
 {
      /**
@@ -46,13 +49,25 @@ class ProductCtrl extends Controller
 
         $product = new Product();
 
+        $category = Category::where('name', $request->category_name)->first();
+        $subcategory = Subcategory::where('name', $request->subcategory_name)->first();
+        $childcategory = Childcategory::where('name', $request->childcategory_name)->first();    
+
+        $request->category_name;
+
         $product ->sku = $request->sku;
         $product ->product_type = $request->product_type;
         $product ->affiliate_link = $request->affiliate_link;
         $product ->user_id = $request->user_id;
         $product ->category_name = $request->category_name;
         $product ->subcategory_name = $request->subcategory_name;
-        $product ->childcategory_name = $request->childcategory_name; 
+        $product ->childcategory_name = $request->childcategory_name;
+
+        $product ->category_id = $category ? $category->id : 0;
+        $product ->subcategory_id = $subcategory ? $subcategory->id : 0;
+        $product ->subcategory_id = $childcategory ? $childcategory->id : 0;
+
+ 
         $product ->name = $request->name;
         $product ->slug = $request->slug;
 
@@ -67,18 +82,15 @@ class ProductCtrl extends Controller
     
                 $paths[]  = $uploadResult["url"];
                 // $product->photo = serialize($paths) ;
-                $product->photo = $paths;
+                $product->photo = implode(",", $paths);
            
         }
     
         if($request->hasFile('file') && $request->file('file')->isValid()){
             $cloudder = Cloudder::upload($request->file('file')->getRealPath());
-
             $uploadResult = $cloudder->getResult();
-
             $file_url = $uploadResult["url"];
             $product->file = $file_url;
-            
         }
 
         $product ->size = $request->size;
@@ -170,9 +182,11 @@ class ProductCtrl extends Controller
     //fetch all product
     public function recent(Request $request)
     {
-        $product = Product::limit(5)->latest()->get();
+        $products = ProductResource::collection(Product::limit(5)->latest()->get());
+
+        // dd($product->toJson());
        
-        if(!$product){
+        if(!$products){
             return response() ->json([
                 'status' =>false,
                 'message' => 'product could not be found'
@@ -184,7 +198,7 @@ class ProductCtrl extends Controller
                 'status' =>true,
                 // 'stat' =>$i,
                 'data' => [
-                    'product' =>$product
+                    'product' =>$products
                    
                 ],
             ], 200);

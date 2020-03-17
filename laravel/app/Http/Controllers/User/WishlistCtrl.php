@@ -74,7 +74,6 @@
         'success' => true,
         'msg' => 'Successfully Added'
       ], 201); 
-
     }
 
     public function removewish() {

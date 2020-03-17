@@ -7,6 +7,9 @@ use App\Classes\GeniusMailer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use App\Models\Category;
+use App\Models\SubCategory;
+use App\Observers\CategoryObserver;
+use App\Observers\SubCategoryObserver;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Collection;
@@ -81,5 +84,9 @@ class AppServiceProvider extends ServiceProvider
             Session::put('popup' , 1);
              
         });
+
+        Category::observe(CategoryObserver::class);
+        SubCategory::observe(SubCategoryObserver::class);
+
     }
 }

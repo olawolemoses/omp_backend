@@ -218,7 +218,6 @@
   // CURRENCY SECTION
 
     public function currency($id) {
-
       $this->code_image();
       if (Session::has('coupon')) {
         Session::forget('coupon');
@@ -276,7 +275,6 @@
   // -------------------------------- BLOG SECTION ----------------------------------------
 
       public function blog(Request $request) {
-        
         $this->code_image();
         $blogs = Blog::orderBy('created_at','desc')->paginate(9);
         if($request->ajax()){

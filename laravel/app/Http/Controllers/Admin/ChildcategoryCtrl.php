@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Subcategory;
 use App\Models\Childcategory;
+use App\Http\Resources\ChildcategoryResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -72,7 +73,7 @@ class ChildcategoryCtrl extends Controller
     //fetch all roles
     public function show(Request $request)
     {
-        $childcategory = Childcategory::latest('id')->get();
+        $childcategory = ChildcategoryResource::collection(Childcategory::latest('id')->get());
 
         if(!$childcategory){
             return response() ->json([
@@ -82,18 +83,21 @@ class ChildcategoryCtrl extends Controller
         }
         else{
             //return response if successful
-        return response() ->json([
-            'status' =>true,
-            'data' => [
-                'childcategory' =>$childcategory
-            ],
-        ], 200);
+            return response() ->json([
+                'status' =>true,
+                'data' => [
+                    'childcategory' =>$childcategory
+                ],
+            ], 200);
         }
 
     }
 
-    public function get(Request $request, $subcategory_name){
-        $childcategory = Childcategory::where('subcategory_name', $subcategory_name)->get();
+    public function get(Request $request, $subcategory_name)
+    {
+        $subcategory = Subcategory::where('name', $subcategory_name)->first();
+
+        $childcategory = Childcategory::where('subcategory_id', $subcategory->id)->get();
 
         if(!$childcategory)
         {
@@ -139,15 +143,11 @@ class ChildcategoryCtrl extends Controller
         $childcategory =  Childcategory::findOrFail($id);
         
         if($childcategory->fill($request->all())->save()) {
-
-      
             return response([
                 'status'=>true,
                 'message'=>'childCategory updated successfully',
                 'childCategory'=> $childcategory
             ], 201);
-        
-
         }
         return response()->json(['status' => 'failed to update childCategory']);
     }

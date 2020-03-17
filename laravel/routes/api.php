@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,9 +15,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-
 
 Route::group(['prefix' => 'v1'], function(){
 
@@ -114,7 +110,6 @@ Route::group(['middleware' => ['jwt.verify', 'sessions'],  'prefix' => 'v1/user'
     Route::get('/wishlists','User\WishlistCtrl@wishlists');
     Route::get('/wishlist/add/{id}','User\WishlistCtrl@addwish');
     Route::get('/wishlist/remove/{id}','User\WishlistCtrl@removewish');
-
     // User Wishlist Ends
 
     Route::post('/paystack/submit', 'Front\PaystackController@store');

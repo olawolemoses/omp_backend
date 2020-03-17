@@ -70,17 +70,6 @@ class ProductCtrl extends Controller
                 $product->photo = $paths;
            
         }
-
-        if($request->hasFile('thumbnail') && $request->file('thumbnail')->isValid()){
-            $cloudder = Cloudder::upload($request->file('thumbnail')->getRealPath());
-
-            $uploadResult = $cloudder->getResult();
-
-            $file_url = $uploadResult["url"];
-            $product->thumbnail = $file_url;
-            
-        }
-
     
         if($request->hasFile('file') && $request->file('file')->isValid()){
             $cloudder = Cloudder::upload($request->file('file')->getRealPath());
@@ -156,7 +145,7 @@ class ProductCtrl extends Controller
     //fetch all product
     public function show(Request $request)
     {
-        $product = Product::where('status','=',1)->latest()->get();
+        $product = Product::latest()->get();
         
 
         if(!$product){

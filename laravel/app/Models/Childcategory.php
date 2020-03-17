@@ -9,7 +9,7 @@ class Childcategory extends Model
   protected $table = 'childcategories';
 
 
-  protected $fillable = ['subcategory_id','name','slug'];
+  protected $fillable = ['subcategory_id','name','slug', 'status'];
   public $timestamps = false;
 
   public function subcategory() {

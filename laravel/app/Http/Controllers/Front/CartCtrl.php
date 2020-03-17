@@ -138,7 +138,6 @@ class CartCtrl extends Controller
         }
 
         $oldcart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
-        
         $cart = new Cart($oldcart);
 
         $cart->add($prod, $prod->id, $size);
