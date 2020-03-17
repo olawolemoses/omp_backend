@@ -125,6 +125,17 @@
       }
     }
 
+    public function countries(Request $request)
+    {
+        # code...
+
+
+        return response()->json([
+          'success' => true,
+          'data' => compact('countries')
+        ], 201);
+    }
+
     // Capcha Code Image
     private function  code_image() {
 
