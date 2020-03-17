@@ -1,0 +1,11 @@
+{
+    "name": "laravel",
+    "type": "project",
+    "description": "The Laravel Framework",
+
+    "require": {
+        "tymon/jwt-auth": "^0.5.12"
+    },
+    "require-dev": {
+    }
+}
