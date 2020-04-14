@@ -32,7 +32,27 @@ class UserCtrl extends Controller
                        ], 200);
                    }
                }
+    
            
+                //edit Category
+                public function editStatus(Request $request, $id)
+                {
+                    $user =  User::findOrFail($id);
+                    
+                    $user->status = $request->status;
+                    
+                    
+                    if($user->save()) {
+                        return response([
+                            'status'=>true,
+                            'message'=>'User updated successfully',
+                            'user'=> $user
+                        ], 201);
+                    }
+                    return response()->json(['status' => 'failed to update User']);
+                }
+    
+    
                public function recent(Request $request)
                {
                    $user = User::limit(3)->latest()->get();

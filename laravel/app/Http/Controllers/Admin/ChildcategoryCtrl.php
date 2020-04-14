@@ -41,13 +41,14 @@ class ChildcategoryCtrl extends Controller
 
         $childcategory = new Childcategory();
         
-        // $sub = Subcategory::findOrFail($request->subcategory_name);
+        $sub = Subcategory::where("name", $request->subcategory_name)->first();
 
         $childcategory ->name = $request->name;
         $childcategory ->slug = $request->slug;
         $childcategory ->status = 1;
-        $childcategory ->subcategory_name = $request->subcategory_name;
-        $childcategory ->category_name = $request->category_name;
+        $childcategory ->subcategory_name = $sub->name;
+        $childcategory ->subcategory_id = $sub->id;
+        // $childcategory ->category_name = $request->category_name;
 
 
         $childcategory->save();

@@ -8,12 +8,73 @@
   use App\Models\User;
   use Validator;
   use Cloudder;
-  use Hash;
+ 
   use JWTAuth;
   use Log;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
+use Hash;
+use Illuminate\Auth\Events\PasswordReset;
 
   class SignupCtrl extends controller{
+      
+       use SendsPasswordResetEmails, ResetsPasswords {
+        SendsPasswordResetEmails::broker insteadof ResetsPasswords;
+    }
+    
+    public function _construct(Request $request) {
+        $this->request = $request;
+    }
+    
+    public function callResetPassword(Request $request)
+    {
+        return $this->reset($request);
+    }
+
+    protected function resetPassword($user, $password)
+    {
+        $user->password = Hash::make($password);
+        $user->save();
+        event(new PasswordReset($user));
+    }
+
+    public function sendPasswordResetLink(Request $request)
+    {
+        return $this->sendResetLinkEmail($request);
+    }
+    
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return response()->json([
+            'message' => 'Password reset email sent.',
+            'data' => $response
+        ]);
+    }    
+    
+    
+    protected function sendResetResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Password reset successfully.']);
+    }
+    
+    /**
+     * Get the response for a failed password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Failed, Invalid Token.']);
+    }
+
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Email could not be sent to this email address.']);
+    }    
+
 
     public function create (Request $request){
         $this->validate($request,[
@@ -21,14 +82,13 @@
             'email' => 'required | string :unique',
             'password' => 'required | string',   
             'address' => 'required | string',
-            'photo' => 'mimes:jpeg,jpg,png,svg',
-            'bill' => 'mimes:jpeg,jpg,png,svg',
+           
             'zip' => 'required',
             'country' => 'required | string',
             'state' => 'required | string',
             'shop_name' => 'required | string',
             'shop_details' => 'required | string',
-            'id_card' => 'mimes:jpeg,jpg,png,svg,pdf',
+            
           
             
         ]);
@@ -307,13 +367,30 @@
     }  
 
 
-     public function updated (Request $request, $id){
+     public function updated (Request $request,$id){
        
         $vendor = User::findOrFail($id);
 
+        if($request->hasFile('photo') && $request->file('photo')->isValid()){
+            $cloudder = Cloudder::upload($request->file('photo')->getRealPath());
+
+            $uploadResult = $cloudder->getResult();
+
+            $file_url = $uploadResult["url"];
+            $vendor->photo = $file_url;
+            
+        }
+        // else {
+        //        # code...
+        //        return response()->json([
+        //          'status' => 'Failed',
+        //          'message' => 'Select image first.'
+        //        ], 201);
+        //      }
+
         $vendor->phone = $request->phone;
         $vendor->name = $request->name;
-        $vendor->password = Hash::make($request->password);
+        // $vendor->password = Hash::make($request->password);
         $vendor->email = $request->email;
         $vendor->address = $request->address;
         $vendor->zip = $request->zip;
@@ -324,7 +401,7 @@
         $vendor->current_balance = $request->current_balance;
 
 
-        $vendor->update();
+        $vendor->save();
 
         if($vendor){
             return response() ->json([
@@ -339,5 +416,25 @@
         ], 200);
 
     }  
+    
+     public function checkemail(request $request){
+      
+        $ven = User::whereEmail($request->email)->first();
+
+        if($ven){
+            return response()->json([
+                'status' => true,
+                'message' => 'Email exist'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Email does not exist'
+            ]);
+        }
+
+    }
+   
 
   }

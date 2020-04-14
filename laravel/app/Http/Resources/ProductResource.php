@@ -18,7 +18,7 @@ class ProductResource extends JsonResource
                         parent::toArray($request), 
                         ["category" => new CategoryResource($this->category)],
                         ["subcategory" => new SubcategoryResource($this->subcategory)],
-                        ["childcategory" => new ChildcategoryResource($this->childcategory)],
+                        ["childcategory" => new ChildcategoryResource($this->childcategory)]
                     );
     }
 }

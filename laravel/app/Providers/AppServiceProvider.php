@@ -62,20 +62,20 @@ class AppServiceProvider extends ServiceProvider
             $settings->with('gs', DB::table('generalsettings')->find(1));
             $settings->with('seo', DB::table('seotools')->find(1));
             $settings->with('categories', Category::where('status','=',1)->get());   
-            if (Session::has('language')) 
-            {
-                $data = DB::table('languages')->find(Session::get('language'));
-                $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
-                $lang = json_decode($data_results);
-                $settings->with('langg', $lang);
-            }
-            else
-            {
-                $data = DB::table('languages')->where('is_default','=',1)->first();
-                $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
-                $lang = json_decode($data_results);
-                $settings->with('langg', $lang);
-            }  
+            // if (Session::has('language')) 
+            // {
+            //     $data = DB::table('languages')->find(Session::get('language'));
+            //     $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
+            //     $lang = json_decode($data_results);
+            //     $settings->with('langg', $lang);
+            // }
+            // else
+            // {
+            //     $data = DB::table('languages')->where('is_default','=',1)->first();
+            //     $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
+            //     $lang = json_decode($data_results);
+            //     $settings->with('langg', $lang);
+            // }  
 
             if (!Session::has('popup')) 
             {
@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Category::observe(CategoryObserver::class);
-        SubCategory::observe(SubCategoryObserver::class);
+        // SubCategory::observe(SubCategoryObserver::class);
 
     }
 }

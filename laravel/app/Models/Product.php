@@ -13,7 +13,7 @@
 
     
       protected $casts = [
-        //'photo' => 'array',
+        'photo' => 'array',
       ];
     
 

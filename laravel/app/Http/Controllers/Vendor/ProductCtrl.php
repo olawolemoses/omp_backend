@@ -51,6 +51,10 @@ class ProductCtrl extends Controller
         $product ->affiliate_link = $request->affiliate_link;
         $product ->user_id = $request->user_id;
         $product ->category_name = $request->category_name;
+        $product ->category_id = $request->category_id;
+        $product ->subcategory_id = $request->subcategory_id;
+        
+
         $product ->subcategory_name = $request->subcategory_name;
         $product ->childcategory_name = $request->childcategory_name; 
         $product ->name = $request->name;
@@ -66,7 +70,7 @@ class ProductCtrl extends Controller
                 $uploadResult = $cloudder->getResult();
     
                 $paths[]  = $uploadResult["url"];
-               
+                
                 $product->photo = $paths;
            
         }
@@ -82,6 +86,7 @@ class ProductCtrl extends Controller
         }
 
         $product ->size = $request->size;
+        $product ->thumbnail = $uploadResult["url"];
         $product ->size_qty = $request->size_qty;
         $product ->size_price = $request->size_price;
         $product ->price = $request->price;

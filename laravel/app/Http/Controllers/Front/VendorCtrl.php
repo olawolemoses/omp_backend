@@ -15,6 +15,7 @@
   use Illuminate\Http\Request;
   use App\Http\Controllers\Controller;
   use Illuminate\Support\Collection;
+  use Log;
 
 
   class VendorCtrl extends Controller
@@ -75,6 +76,17 @@
       ], 201);
     }
 
+    public function countries()
+    {   
+        # code...
+        $results = DB::table('countries')->get(); 
+
+        return response()->json([
+          'success' => true,
+          'data' => compact('results')
+        ], 201);
+    }
+
     //Send email to user
     public function vendorcontact(Request $request) {
 
@@ -125,14 +137,14 @@
       }
     }
 
-    public function countries(Request $request)
+    public function states(Request $request, $id)
     {
-        # code...
-
+      # code...
+      $results = DB::table('states')->where('country_id', '=', $id)->get();
 
         return response()->json([
           'success' => true,
-          'data' => compact('countries')
+          'data' => compact('results')
         ], 201);
     }
 

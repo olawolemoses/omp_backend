@@ -13,6 +13,8 @@ use App\Models\Subscription;
 use App\Models\Generalsetting;
 use App\Models\UserSubscription;
 use App\Models\FavoriteSeller;
+use Cloudder;
+use Log;
 
 class UserCtrl extends Controller
 {
@@ -36,38 +38,54 @@ class UserCtrl extends Controller
     //--- Validation Section
     $rules =
     [
-        'photo' => 'mimes:jpeg,jpg,png,svg',
-        'email' => 'unique:users,email,'.Auth::user()->id
+        'email' => 'unique:users,email,'. Auth::user()->id
     ];
 
 
-    $validator = Validator::make(Input::all(), $rules);
+    $validator = Validator::make($request->all(), $rules);
 
     if ($validator->fails()) {
-      return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+      return response()->json(array(
+        'status' => false, 
+        'message' => $validator->getMessageBag()->toArray()
+      ));      
     }
 
     //--- Validation Section Ends
     $input = $request->all();  
-    $data = Auth::user();        
+    $data = Auth::user();     
+    
+    if ($request->hasFile('photo')) { 
 
-      if ($file = $request->file('photo')) { 
+      $cloudder = Cloudder::upload($request->file('photo')->getRealPath());
 
-          $name = time().$file->getClientOriginalName();
-          $file->move('assets/images/users/',$name);
-          if($data->photo != null)
-          {
-              if (file_exists(public_path().'/assets/images/users/'.$data->photo)) {
-                  unlink(public_path().'/assets/images/users/'.$data->photo);
-              }
-          }            
+      $uploadResult = $cloudder->getResult();
 
-        $input['photo'] = $name;
-      } 
+      $file_url = $uploadResult["url"];            
+
+      $data['photo'] = $file_url;
+    } 
+    
+    else {
+      # code...
+      return response()->json([
+        'status' => 'Failed',
+        'message' => 'Select image first.'
+      ], 201);
+    }
+
+    $data['city'] = $input['city'];
+    $data['zip'] = $input['zip'];
+    $data['state'] = $input['state'];
+    $data['country'] = $input['country'];
+    $data['address'] = $input['address'];
 
     $data->update($input);
-    $msg = 'Successfully updated your profile';
-    return response()->json($msg);
+    
+    return response()->json([
+      'status' => 'success',
+      'message' => 'Successfully updated your profile'
+    ], 201);
 
   }
 

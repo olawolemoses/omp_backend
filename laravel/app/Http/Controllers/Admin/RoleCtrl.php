@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -75,6 +76,28 @@ class RoleCtrl extends Controller
         }
        
     }
+    
+    public function showUsernames(Request $request)
+    {
+        $users = User::latest('id')->get();
+
+        if(!$users){
+            return response() ->json([
+                'status' =>false,
+                'data' =>'Users could not be found'
+            ]);
+        }
+        else{
+            //return response if successful
+        return response() ->json([
+            'status' =>true,
+            'data' => [
+                'users' =>$users
+            ],
+        ], 201);
+        }
+
+    }    
 
     public function view(Request $request, $id)
     {

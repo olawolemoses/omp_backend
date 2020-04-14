@@ -1,0 +1,962 @@
+[2020-03-13 07:37:05] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (ctf, normal, , 27, Electronic, REFRIGERATOR, , hghh, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584085018\/fbj7qmodli1xgzqmpgnf.jpg","http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584085019\/uzzniunjg5cokxxevuwf.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584085022/ns87gaqwjxuj19vua6gf.jpg, , , , 345, 234, ftftf, 5454, gtft, 1, 0, fttft, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:37:04, 2020-03-13 07:37:04)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (ctf, normal, , 27, Electronic, REFRIGERATOR, , hghh, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584085018\\/fbj7qmodli1xgzqmpgnf.jpg\",\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584085019\\/uzzniunjg5cokxxevuwf.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584085022/ns87gaqwjxuj19vua6gf.jpg, , , , 345, 234, ftftf, 5454, gtft, 1, 0, fttft, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:37:04, 2020-03-13 07:37:04)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(136): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 07:41:49] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (fe5r5, normal, , 27, Electronic, REFRIGERATOR, , gvgftf, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584085306\/vlfwn5pkmid6b6qq7kcn.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584085307/so81dc5yiujsfwssgceq.jpg, , , , 3456, 454, trr, 654, 6rtr, 1, 0, uh, , , old, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:41:49, 2020-03-13 07:41:49)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (fe5r5, normal, , 27, Electronic, REFRIGERATOR, , gvgftf, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584085306\\/vlfwn5pkmid6b6qq7kcn.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584085307/so81dc5yiujsfwssgceq.jpg, , , , 3456, 454, trr, 654, 6rtr, 1, 0, uh, , , old, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:41:49, 2020-03-13 07:41:49)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(136): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 07:46:59] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (gygy, normal, , 27, Electronic, REFRIGERATOR, , gtff, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584085615\/a4g1os0cvaahfh4qhxxm.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584085616/z7bpcjar1ubgqup5ucul.jpg, , , , 1234, 34, ygy, 2345, tft, 1, 0, tf, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:46:59, 2020-03-13 07:46:59)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (gygy, normal, , 27, Electronic, REFRIGERATOR, , gtff, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584085615\\/a4g1os0cvaahfh4qhxxm.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584085616/z7bpcjar1ubgqup5ucul.jpg, , , , 1234, 34, ygy, 2345, tft, 1, 0, tf, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:46:59, 2020-03-13 07:46:59)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(136): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 07:49:03] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (gfcf4, normal, , 27, Electronic, REFRIGERATOR, , gvgv, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584085740\/daqg490u0t9kcv8jfj6p.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584085741/gar1bqqfr2rkhq2vmcp4.jpg, , , , 345, 34, dfg, 34, df, 1, 0, we, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:49:03, 2020-03-13 07:49:03)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (gfcf4, normal, , 27, Electronic, REFRIGERATOR, , gvgv, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584085740\\/daqg490u0t9kcv8jfj6p.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584085741/gar1bqqfr2rkhq2vmcp4.jpg, , , , 345, 34, dfg, 34, df, 1, 0, we, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 07:49:03, 2020-03-13 07:49:03)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(136): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 09:19:50] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (rr, normal, , 27, Electronic, REFRIGERATOR, , fr, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584091184\/zao5hjvg4qla2tsxgzwj.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584091187/wh4k22mq9of13uww99y6.jpg, , , , 33, 2222, rrfr, 22, frfr, 1, 0, frff, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:19:50, 2020-03-13 09:19:50)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (rr, normal, , 27, Electronic, REFRIGERATOR, , fr, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584091184\\/zao5hjvg4qla2tsxgzwj.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584091187/wh4k22mq9of13uww99y6.jpg, , , , 33, 2222, rrfr, 22, frfr, 1, 0, frff, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:19:50, 2020-03-13 09:19:50)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'category_id' doesn't have a default value at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(136): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 09:38:07] local.ERROR: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `category_id`, `subcategory_id`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (23, normal, , 27, Electronic, null, null, REFRIGERATOR, , yy, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584092283\/pf7gp94ty9gosappkiii.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584092284/awqyyamszvyb8v0gnawp.jpg, , , , 23, 33, rrf, 22, effe, 1, 0, efefe, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:38:07, 2020-03-13 09:38:07)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: 22007): SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `category_id`, `subcategory_id`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (23, normal, , 27, Electronic, null, null, REFRIGERATOR, , yy, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584092283\\/pf7gp94ty9gosappkiii.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584092284/awqyyamszvyb8v0gnawp.jpg, , , , 23, 33, rrf, 22, effe, 1, 0, efefe, , , new, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:38:07, 2020-03-13 09:38:07)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: 22007): SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(140): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 09:41:26] local.ERROR: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `category_id`, `subcategory_id`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (jnj, normal, , 27, Electronic, null, null, REFRIGERATOR, , hbhb, , ["http:\/\/res.cloudinary.com\/feyi\/image\/upload\/v1584092482\/clmar9frkdboccreojsm.jpg"], http://res.cloudinary.com/feyi/image/upload/v1584092483/fvdmayn56u3k5ul0iwkc.jpg, , , , 2345, 2345, xdx, 234, hgv, 1, 0, fcfcf, , , old, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:41:26, 2020-03-13 09:41:26)) {"userId":27,"email":"aysbsc@gmail.com","exception":"[object] (Illuminate\\Database\\QueryException(code: 22007): SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 (SQL: insert into `products` (`sku`, `product_type`, `affiliate_link`, `user_id`, `category_name`, `category_id`, `subcategory_id`, `subcategory_name`, `childcategory_name`, `name`, `slug`, `photo`, `thumbnail`, `size`, `size_qty`, `size_price`, `price`, `previous_price`, `details`, `stock`, `policy`, `status`, `views`, `tags`, `features`, `colors`, `product_condition`, `ship`, `is_meta`, `meta_tag`, `meta_description`, `youtube`, `type`, `license`, `license_qty`, `link`, `platform`, `region`, `licence_type`, `measure`, `featured`, `best`, `top`, `hot`, `latest`, `big`, `trending`, `sale`, `is_discount`, `discount_date`, `whole_sell_qty`, `whole_sell_discount`, `packaging_price`, `updated_at`, `created_at`) values (jnj, normal, , 27, Electronic, null, null, REFRIGERATOR, , hbhb, , [\"http:\\/\\/res.cloudinary.com\\/feyi\\/image\\/upload\\/v1584092482\\/clmar9frkdboccreojsm.jpg\"], http://res.cloudinary.com/feyi/image/upload/v1584092483/fvdmayn56u3k5ul0iwkc.jpg, , , , 2345, 2345, xdx, 234, hgv, 1, 0, fcfcf, , , old, , 0, , , , physical, , , , , , , , 0, 0, 0, 0, 0, 0, 0, 0, 0, , , , , 2020-03-13 09:41:26, 2020-03-13 09:41:26)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: 22007): SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'null' for column 'category_id' at row 1 at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:458)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `pr...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `pr...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `pr...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `pr...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `pr...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\ProductCtrl.php(140): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\ProductCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\ProductCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Middleware\\JwtMiddleware.php(33): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): App\\Http\\Middleware\\JwtMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#56 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#58 {main}
+"} 
+[2020-03-13 16:21:23] local.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bill' in 'field list' (SQL: insert into `users` (`address`, `shop_number`, `email_verified`, `password`, `is_vendor`, `verification_link`, `name`, `fax`, `phone`, `photo`, `bill`, `id_card`, `email`, `affilate_code`, `zip`, `affilate_income`, `shop_name`, `country`, `shop_address`, `state`, `city`, `remember_token`, `status`, `is_provider`, `shop_details`, `owner_name`, `reg_number`, `shop_message`, `f_url`, `g_url`, `l_url`, `t_url`, `f_check`, `g_check`, `t_check`, `l_check`, `mail_sent`, `shipping_cost`, `current_balance`, `date`, `ban`, `updated_at`, `created_at`) values (cityworld, 07033718271, No, $2y$10$NM1g/iLkfcEVWviMkuq3au0Ce2rzUjWXYYcwkp6fbkue2PvlrdVFu, 1, , Feyisewa Awotedu, , 07033718271, http://res.cloudinary.com/feyi/image/upload/v1584116478/waosvsiybqbmnpt4ohsc.jpg, http://res.cloudinary.com/feyi/image/upload/v1584116480/r39m1ptphtfcindybgle.jpg, http://res.cloudinary.com/feyi/image/upload/v1584116482/d6fzkj4zigudkxlvt7q7.jpg, feyi@gmail.com, , 123456, , bink, akubo, cityworld, akubo, akubo, , 0, 0, bink, Feyisewa Awotedu, , , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, , 0, 2020-03-13 16:21:23, 2020-03-13 16:21:23)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bill' in 'field list' (SQL: insert into `users` (`address`, `shop_number`, `email_verified`, `password`, `is_vendor`, `verification_link`, `name`, `fax`, `phone`, `photo`, `bill`, `id_card`, `email`, `affilate_code`, `zip`, `affilate_income`, `shop_name`, `country`, `shop_address`, `state`, `city`, `remember_token`, `status`, `is_provider`, `shop_details`, `owner_name`, `reg_number`, `shop_message`, `f_url`, `g_url`, `l_url`, `t_url`, `f_check`, `g_check`, `t_check`, `l_check`, `mail_sent`, `shipping_cost`, `current_balance`, `date`, `ban`, `updated_at`, `created_at`) values (cityworld, 07033718271, No, $2y$10$NM1g/iLkfcEVWviMkuq3au0Ce2rzUjWXYYcwkp6fbkue2PvlrdVFu, 1, , Feyisewa Awotedu, , 07033718271, http://res.cloudinary.com/feyi/image/upload/v1584116478/waosvsiybqbmnpt4ohsc.jpg, http://res.cloudinary.com/feyi/image/upload/v1584116480/r39m1ptphtfcindybgle.jpg, http://res.cloudinary.com/feyi/image/upload/v1584116482/d6fzkj4zigudkxlvt7q7.jpg, feyi@gmail.com, , 123456, , bink, akubo, cityworld, akubo, akubo, , 0, 0, bink, Feyisewa Awotedu, , , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, , 0, 2020-03-13 16:21:23, 2020-03-13 16:21:23)) at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, PDOException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bill' in 'field list' at C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:452)
+[stacktrace]
+#0 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('insert into `us...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(459): Illuminate\\Database\\Connection->run('insert into `us...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(411): Illuminate\\Database\\Connection->statement('insert into `us...', Array)
+#3 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Processors\\Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `us...', Array)
+#4 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2628): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `us...', Array, 'id')
+#5 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1338): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(823): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(788): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(651): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 C:\\xampp\\htdocs\
+ewOMP\\laravel\\app\\Http\\Controllers\\Vendor\\SignupCtrl.php(121): Illuminate\\Database\\Eloquent\\Model->save()
+#10 [internal function]: App\\Http\\Controllers\\Vendor\\SignupCtrl->create(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#12 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('create', Array)
+#13 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Vendor\\SignupCtrl), 'create')
+#14 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#15 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Routing\\Route->run()
+#16 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#22 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(684): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#28 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(659): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(625): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#30 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(614): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\barryvdh\\laravel-cors\\src\\HandleCors.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Barryvdh\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(31): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#53 C:\\xampp\\htdocs\
+ewOMP\\laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\
+ewOMP\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#55 {main}
+"} 

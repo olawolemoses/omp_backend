@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Childcategory extends Model
+class PasswordReset extends Model 
 {
-  protected $table = 'childcategories';
-
-
-  protected $fillable = ['subcategory_id','name','slug', 'status'];
+  protected $fillable = ['email','key','expDate'];
+  
+  protected $table = "password_reset_temp";
+  
   public $timestamps = false;
 
-  public function subcategory() {
-    return $this->belongsTo('App\Models\Subcategory', 'subcategory_id', 'id');
+  public function subs() {
+    return $this->hasMany('App\Models\Subcategory')->where('status','=',1);
   }
 
   public function products() {
@@ -24,4 +24,4 @@ class Childcategory extends Model
     $this->attributes['slug'] = str_replace(' ', '-', $value);
   }
 
-}
+} 

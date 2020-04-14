@@ -25,6 +25,11 @@ Route::group(['prefix' => 'v1'], function(){
     // Route::post('/password/reset', 'Auth\ForgotPasswordCtrl@reset');
     // Route::post('/password/change', 'Auth\ChangePasswordCtrl');
 
+    // LOCATION SECTION
+    Route::get('/countries','Front\VendorCtrl@countries');
+    Route::get('/states/{id}','Front\VendorCtrl@states');
+    // LOCATION SECTION ENDS
+
     // CATEGORY SECTION
     Route::get('/category/{slug}','Front\CatalogCtrl@category');
     Route::get('/category/{slug1}/{slug2}','Front\CatalogCtrl@subcategory');
@@ -106,10 +111,18 @@ Route::group(['middleware' => ['jwt.verify', 'sessions'],  'prefix' => 'v1/user'
     Route::post('/profile', 'User\UserCtrl@profileupdate');
     // User Profile Ends
 
+    // User Reset 
+    Route::post('/reset', 'User\UserController@reset');
+    Route::post('/password/change', 'Auth\ChangePasswordCtrl');
+    // User Reset End
+
     // User Wishlist
     Route::get('/wishlists','User\WishlistCtrl@wishlists');
     Route::get('/wishlist/add/{id}','User\WishlistCtrl@addwish');
     Route::get('/wishlist/remove/{id}','User\WishlistCtrl@removewish');
+   
+
+
     // User Wishlist Ends
 
     Route::post('/paystack/submit', 'Front\PaystackController@store');
@@ -147,13 +160,26 @@ Route::group(['middleware' => ['jwt.verify', 'sessions'], 'prefix' => 'v1/messag
 Route::post('/v1/vendor/signup', 'Vendor\SignupCtrl@create');
 Route::post('/v1/vendor/login', 'Vendor\SignupCtrl@authenticate');
 
+//forgot password
+Route::post('/v1/vendor/email','Vendor\SignupCtrl@checkemail' );
+
+Route::post('v1/vendor/forgot-password', 'Vendor\ForgotPwdCtrl@create');
+Route::post('v1/vendor/reset-password', 'Vendor\ForgotPwdCtrl@reset');
+// handle reset password form process
+Route::post('v1/admin/reset/password', 'Vendor\SignupCtrl@callResetPassword');
+
+
 Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function ()  {
 
     //EditProfile
-    Route::put('/update/{id}', 'Vendor\SignupCtrl@updated');
+    Route::post('/update/{id}', 'Vendor\SignupCtrl@updated');
     Route::put('/password/{id}', 'Vendor\SignupCtrl@password');
     Route::post('/check/{id}', 'Vendor\SignupCtrl@checkpassword');
+
+    //vendor wishlist
     Route::get('/wishlists/{id}','User\WishlistCtrl@show');
+    // Route::get('/wishlist/vend/{user_id}','User\WishlistCtrl@vendorWish');
+    Route::get('/wishlist/vends','User\WishlistCtrl@vendoWish');
 
 
     // Order Notification
@@ -223,16 +249,137 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'v1/vendor'], function
 Route::post('v1/admin/create','Admin\RegisterCtrl@register');
 Route::post('v1/admin/signup','Admin\LoginCtrl@authenticate');
 
+Route::post('v1/admin/forgot-password', 'Admin\ForgotPasswdCtrl@create');
+Route::post('v1/admin/reset-password', 'Admin\ForgotPasswdCtrl@reset');
+
+// handle reset password form process
+Route::post('v1/admin/reset/password', 'Admin\LoginCtrl@callResetPassword');
+
+
+    
 Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     //Roles
     Route::post('role/create','Admin\RoleCtrl@create');
     Route::get('role','Admin\RoleCtrl@show');
+    Route::get('usernames','Admin\RoleCtrl@showUsernames');
     Route::get('role/{id}','Admin\RoleCtrl@view');
     Route::put('role/edit/{id}','Admin\RoleCtrl@edit');
     Route::delete('role/delete/{id}', 'Admin\RoleCtrl@delete');
 
 
+    //get user details
+    Route::post('/update/{id}', function (Request $request,$id) {
+        
+        $vendor = App\Models\Admin::findOrFail($id);
 
+        if($request->hasFile('photo') && $request->file('photo')->isValid()){
+            $cloudder = Cloudder::upload($request->file('photo')->getRealPath());
+
+            $uploadResult = $cloudder->getResult();
+
+            $file_url = $uploadResult["url"];
+            $vendor->photo = $file_url;
+            
+        }
+        // else {
+        //        # code...
+        //        return response()->json([
+        //          'status' => 'Failed',
+        //          'message' => 'Select image first.'
+        //        ], 201);
+        //      }
+
+        $vendor->phone = $request->phone;
+        $vendor->name = $request->name;
+        // $vendor->password = Hash::make($request->password);
+        $vendor->email = $request->email;
+
+
+        $vendor->save();
+
+        if($vendor){
+            return response() ->json([
+                'status' =>'success',
+                'message' =>'Profile updated successfully'
+            ], 200);  
+        }
+
+        return response() ->json([
+            'status' =>false,
+            'message' =>'Failed to update profile'
+        ], 200);
+
+    });
+    
+    //get user details
+    Route::get('/details/{id}', function (Request $request, $id) {
+        $vendor = App\Models\Admin::where('name', $id)->first();
+        if(!$vendor){
+            return response() ->json([
+                'status' =>false,
+                'data' => 'Admin could not be found'
+            ]);
+        }
+    
+        return response() ->json([
+            'status' =>true,
+            'data' => [
+            'vendor' =>$vendor
+            ],
+        ], 200);
+    });    
+    
+    
+    // check user password
+    Route::post('/check/{id}', function (Request $request, $id){
+        $vendor = App\Models\Admin::where('name', $id)->first();
+        if(!$vendor) {
+            return response() ->json([
+                'status' =>false,
+                'data' => 'vendor could not be found'
+            ]);
+        } else {
+            $hasher = app()->make('hash');
+            $gs = $hasher->check($request->input('password'), $vendor->password);
+            if($gs) {
+                    return response() ->json([
+                        'status' =>true,
+                        'message' =>'Password exists',
+                    ], 200);
+            } else {
+                return response()->json([
+                    'status' =>false,
+                    'message' =>'Incorrect password',
+                ],200);
+            }
+        }
+    });
+    
+    
+    // fix password 
+    Route::put('/password/{id}', function (Request $request, $id){
+       
+        $vendor = App\Models\Admin::findOrFail($id);
+       
+        $vendor->password = Hash::make($request->password);
+
+        $vendor->update();
+
+        if($vendor){
+            return response() ->json([
+                'status' =>'success',
+                'message' =>'Password updated successfully'
+            ], 200);  
+        }
+
+        return response() ->json([
+            'status' =>false,
+            'message' =>'Failed to update password'
+        ], 200);
+
+    });
+    
+    
     //Category
     Route::post('category/create','Admin\CategoryCtrl@create');
     Route::put('category/update/{id}','Admin\CategoryCtrl@edit');
@@ -261,19 +408,17 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     Route::get('order/pending','Admin\OrderCtrls@index');
     Route::get('order/process','Admin\OrderCtrls@process');
     Route::get('order/complete','Admin\OrderCtrls@complete');
-
+    
     Route::get('order/declined','Admin\OrderCtrls@decline');
     Route::get('order/all','Admin\OrderCtrls@all');
     Route::get('order/recent','Admin\OrderCtrls@recent');
     Route::get('order/all/{id}','Admin\OrderCtrls@view');
     Route::delete('order/delete/{id}','Admin\OrderCtrls@delete');
 
-
-
-
     //Product
     Route::post('product/create','Admin\ProductCtrl@create');
     Route::post('product/new','Admin\ProductCtrl@save');
+    Route::get('product/deactivated','Admin\ProductCtrl@showDeactivated');
     Route::put('product/update/{id}','Admin\ProductCtrl@edit');
     Route::get('product','Admin\ProductCtrl@show');
     Route::get('recent','Admin\ProductCtrl@recent');
@@ -295,6 +440,7 @@ Route::group(['middleware'=>'jwt.verify','prefix' => 'v1/admin'], function () {
     //see all users in the system
     Route::get('/users/all', 'Admin\UserCtrl@all');
     Route::get('/users/recent', 'Admin\UserCtrl@recent');
+    Route::put('/users/status/{id}', 'Admin\UserCtrl@editStatus');
     Route::get('/users/{id}', 'Admin\UserCtrl@view');
     Route::delete('/users/delete/{id}', 'Admin\UserCtrl@delete');
 

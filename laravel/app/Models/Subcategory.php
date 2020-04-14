@@ -15,9 +15,6 @@
     	return $this->hasMany('App\Models\Childcategory',  "subcategory_id" )->where('status','=',1);
     }
 
-    
-
-
     public function category() {
     	return $this->belongsTo('App\Models\Category');
     }

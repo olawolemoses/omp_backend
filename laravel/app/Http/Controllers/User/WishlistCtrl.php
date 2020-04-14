@@ -91,9 +91,10 @@
     }
 
     //fetch all product
-    public function show(Request $request, $id )
+    public function show(Request $request, $product_id )
     {
-        $product = Wishlist::where('product_id','=',$id)->get();
+      
+        $product = Wishlist::where('product_id',$product_id)->get();
         
 
         if(!$product){
@@ -112,6 +113,41 @@
                 ],
             ], 200);
         }
+
     }
 
+     //fetch all vendor users
+     public function vendoWish(Request $request)
+    {
+    
+        // $vendor = Wishlist::join('products','products.id','=','wishlists.product_id')->select('wishlists.*')->get();
+        $user = Auth::user()->id;
+        
+        // $vendor = Product::join('wishlists','wishlists.product_id', '=', 'products.id')->select('products.*')->get();
+        $vendor=Wishlist::join('products', function ($join) use ($user) {
+          $join->on('wishlists.product_id', '=', 'products.id')
+               ->where('products.user_id','=',$user);
+         })->get();
+
+        if(!$vendor){
+            return response() ->json([
+                'status' =>false,
+                'message' => 'vendor could not be found',
+             
+            ]);
+        }
+        else{
+        
+            return response() ->json([
+                'status' =>true,
+                'data' => [
+                  'product' =>$vendor
+                 
+              ],
+
+               
+            ], 200);
+        }
+
+    }
   }

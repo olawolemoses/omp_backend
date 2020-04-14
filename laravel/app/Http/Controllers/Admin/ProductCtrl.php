@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Cloudder;
-use Log;
 
 use App\Http\Resources\ProductResource;
 
@@ -178,6 +177,30 @@ class ProductCtrl extends Controller
             ], 200);
         }
     }
+    
+    //fetch all product
+    public function showDeactivated(Request $request)
+    {
+        $product = Product::where('status', 0)->latest()->get();
+        
+
+        if(!$product){
+            return response() ->json([
+                'status' =>false,
+                'message' => 'product could not be found',
+             
+            ]);
+        }
+        else{
+            return response() ->json([
+                'status' =>true,
+                'data' => [
+                    'product' =>$product
+                   
+                ],
+            ], 200);
+        }
+    }    
 
     //fetch all product
     public function recent(Request $request)

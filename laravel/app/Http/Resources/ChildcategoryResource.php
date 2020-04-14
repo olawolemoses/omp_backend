@@ -17,7 +17,7 @@ class ChildcategoryResource extends JsonResource
         return array_merge(
                         parent::toArray($request), 
                         ["subcategory" => new SubcategoryResource($this->subcategory)],
-                        ["category" => new CategoryResource($this->subcategory->category)]
+                        ["category" => new CategoryResource(optional($this->subcategory)->category)]
                     );
     }
 }
